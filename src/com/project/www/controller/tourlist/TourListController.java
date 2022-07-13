@@ -1,5 +1,9 @@
 package com.project.www.controller.tourlist;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +24,11 @@ public class TourListController {
 	@GetMapping(value = "/list")
 	public ModelAndView getlist(String cPage) {
 		ModelAndView mav = new ModelAndView();
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", 1);
+		map.put("end", 10);
+		List<TourListDTO> list = tourListDAOInter.getList(map);
+		mav.addObject("list", list);
 		mav.setViewName("tourlist/list");
 		return mav;
 	}
@@ -34,6 +43,14 @@ public class TourListController {
 			mav.addObject("rmsg", "정보를 저장하는데 문제가 발생하였습니다.");
 		}
 		mav.setViewName("redirect:/web/tourlist/list");
+		return mav;
+	}
+	
+	@GetMapping(value = "/form")
+	public ModelAndView form() {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("tourlist/form");
 		return mav;
 	}
 }
