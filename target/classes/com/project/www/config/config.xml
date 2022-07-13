@@ -4,6 +4,8 @@
  "http://mybatis.org/dtd/mybatis-3-config.dtd">
  <configuration>
  	<typeAliases>
- 		
+ 		<typeAlias type="com.project.www.dto.TourListDTO" alias="tldto"/>
+ 		<typeAlias type="com.project.www.dto.TourAfterDTO" alias="tadto"/>
+ 		<typeAlias type="com.project.www.dto.BookingDTO" alias="bidto"/>
  	</typeAliases>
  </configuration>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tourlist">
+	<select id="list" resultType="tldto" parameterType="map">
+	
+	</select>
+	<insert id="add" parameterType="tldto">
+		insert into tourlist values(tourlist_seq.nextVal,#{title},#{region},#{content},#{tourdate},#{imga},#{imgb},#{imgc},sysdate,sysdate)
+	</insert>
+	<delete id="delete" parameterType="int">
+		delete form tourlist where num = #{num}
+	</delete>
+	<update id="update" parameterType="tldto">
+		update from tourlist set title = #{title}, region = #{region}, content = #{content},tourdate = #{tourdate}, imga = #{imga}, imgb = #{imgb}, imgc = #{imgc}, updatedate = sysdate where num = #{num}
+	</update>
+</mapper>

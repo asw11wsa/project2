@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	this is index page
-	<a href="${pageContext.request.contextPath }/web/tourlist/list">tourlist</a>
+	이건 투어 리스트 입니다.
 </body>
 </html>
