@@ -2,6 +2,8 @@ package com.project.www.dto;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class TourListDTO extends SuperDTO{
 	private int num;
 	private String title;
@@ -13,8 +15,30 @@ public class TourListDTO extends SuperDTO{
 	private String imgc;
 	private String createdate;
 	private String updatedate;
+	private MultipartFile mfilea;
+	private MultipartFile mfileb;
+	private MultipartFile mfilec;
 	private List<TourAfterDTO> tourafters;
 	
+	
+	public MultipartFile getMfilea() {
+		return mfilea;
+	}
+	public void setMfilea(MultipartFile mfilea) {
+		this.mfilea = mfilea;
+	}
+	public MultipartFile getMfileb() {
+		return mfileb;
+	}
+	public void setMfileb(MultipartFile mfileb) {
+		this.mfileb = mfileb;
+	}
+	public MultipartFile getMfilec() {
+		return mfilec;
+	}
+	public void setMfilec(MultipartFile mfilec) {
+		this.mfilec = mfilec;
+	}
 	public List<TourAfterDTO> getTourafters() {
 		return tourafters;
 	}

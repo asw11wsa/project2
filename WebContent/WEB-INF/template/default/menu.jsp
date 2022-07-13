@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <c:set var="mycontext" value="${pageContext.request.contextPath }"></c:set>
-<nav class="navbar navbar-expand-sm mybgColor" >
+<nav class="mb-3 navbar navbar-expand-sm mybgColor" >
      <div class="container-fluid" >
         <ul class="navbar-nav" >
             <li class="nav-item"><a href="${mycontext}/main" class="nav-link active" >Home</a></li>
