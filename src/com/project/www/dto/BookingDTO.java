@@ -1,6 +1,6 @@
 package com.project.www.dto;
 
-public class BookingDTO {
+public class BookingDTO extends SuperDTO{
 	private int num;
 	private int tournum;
 	private String personchk;

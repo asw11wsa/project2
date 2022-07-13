@@ -2,7 +2,7 @@ package com.project.www.dto;
 
 import java.util.List;
 
-public class TourListDTO {
+public class TourListDTO extends SuperDTO{
 	private int num;
 	private String title;
 	private String region;
