@@ -33,7 +33,7 @@ public class TourListController {
 		}else {
 			mav.addObject("rmsg", "정보를 저장하는데 문제가 발생하였습니다.");
 		}
-		mav.setViewName("redirect:/tourlist/list");
+		mav.setViewName("redirect:/web/tourlist/list");
 		return mav;
 	}
 }
