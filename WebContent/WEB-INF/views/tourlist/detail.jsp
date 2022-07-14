@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <h2 class="p-4 fw-bold">상품명 : ${vo.title }</h2>
 <div class="row">
 	<div class="col-sm-12 col-lg-9">
@@ -28,12 +28,16 @@
 					    <div class="carousel-item active">
 					      <img src="${pageContext.request.contextPath }/resources/imgfile/${vo.imga}" class="d-block w-100" alt="...">
 					    </div>
-					    <div class="carousel-item">
-					      <img src="${pageContext.request.contextPath }/resources/imgfile/${vo.imgb}" class="d-block w-100" alt="...">
-					    </div>
-					    <div class="carousel-item">
-					      <img src="${pageContext.request.contextPath }/resources/imgfile/${vo.imgc}" class="d-block w-100" alt="...">
-					    </div>
+					    <c:if test="${vo.imgb != 'noimage.jpg' }">
+						    <div class="carousel-item">
+						      <img src="${pageContext.request.contextPath }/resources/imgfile/${vo.imgb}" class="d-block w-100" alt="...">
+						    </div>
+					    </c:if>
+					    <c:if test="${vo.imgc != 'noimage.jpg' }">
+						    <div class="carousel-item">
+						      <img src="${pageContext.request.contextPath }/resources/imgfile/${vo.imgc}" class="d-block w-100" alt="...">
+						    </div>
+					    </c:if>
 					  </div>
 					  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
 					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -180,7 +184,11 @@
 		})
 		
 		$("#bookingBtn").click(function(){
-			location = `${pageContext.request.contextPath }/web/tourlist/book?num=${vo.num}&adult=\${$("#adult").val()}&children=\${$("#children").val()}`
+			if($("#children").val() == 0 && $("#adult").val() == 0){
+				alert("인원을 선택해 주세요");
+			}else{
+				location = `${pageContext.request.contextPath }/web/tourlist/book?num=${vo.num}&adult=\${$("#adult").val()}&children=\${$("#children").val()}`;	
+			}
 		})
 	})
 </script>
