@@ -31,20 +31,18 @@ public class TourListController {
 	private TourListDAOInter tourlist;
 
 	@GetMapping(value = "/list")
-	public String tourList(Model m ,String cPage,@RequestParam(defaultValue = "") String searchname,@RequestParam(defaultValue = "") String searchval) {
+	public String tourList(Model m ,@RequestParam(defaultValue = "1") String cPage,@RequestParam(defaultValue = "") String searchkey,@RequestParam(defaultValue = "") String searchval) {
 		SearchPageDTO dto = new SearchPageDTO();
-		dto.setStart(1);
-		dto.setEnd(8);
-		if(searchname.equals("searchtitle")) {
-			dto.setSearchtitle(searchval);
-		}else if(searchname.equals("searchregion")) {
-			dto.setSearchregion(searchval);
+		if(searchkey.equals("searchtitle")) {
+			dto.setSearchkey(searchkey);
+			dto.setSearchval(searchval);
+		}else if(searchkey.equals("searchregion")) {
+			dto.setSearchkey(searchkey);
+			dto.setSearchval(searchval);
 		}
+		m.addAttribute("dto", dto);
 		int totalRecord = tourlist.getCnt(dto);
-		//model.addAttribute("list", list);
 		m.addAttribute("totalRecord", totalRecord);
-		List<TourListDTO> list = (List<TourListDTO>)tourlist.getList(dto);
-		m.addAttribute("list", list);
 		return "tourlist/list";
 	}
 	

@@ -21,7 +21,7 @@
 </div> -->
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand fs-3 fw-bold" href="#">SeMiD</a>
+    <a class="navbar-brand fs-3 fw-bold" href="${mycontext}/web/">SeMiD</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -36,19 +36,48 @@
         <li class="nav-item">
           <a class="nav-link" href="${mycontext}/web/tourlist/form">form</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="${mycontext}/web/board/list">게시판</a>
+        </li>
       </ul>
       <ul class="navbar-nav mb-2 mb-lg-0 d-flex" role="search">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
+      	<c:if test="${sessionScope.sessionID == null }">
+	      	<li class="nav-item">
+	          <a class="nav-link" href="${mycontext}/web/loginform">로그인</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="${mycontext}/web/join/joinform">회원가입</a>
+	        </li>
+        </c:if>
+        <c:if test="${sessionScope.sessionID != null }">
+        	<c:if test="${sessionScope.sessionAdmin == 1 }">
+        		<li class="nav-item dropdown">
+		          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		            ${sessionScope.sessionID }
+		          </a>
+		          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+		            <li><a class="dropdown-item" href="${mycontext}/web/member/mypageForm?mnum=${sessionScope.sessionMnum}">마이페이지</a></li>
+		            <li><a class="dropdown-item" href="${mycontext}/web//adminmember/adminMember">관리자 페이지</a></li>
+		            <li><a class="dropdown-item" href="${mycontext}/web/logout">로그아웃</a></li>
+		            <li><hr class="dropdown-divider"></li>
+		            <li><a class="dropdown-item" href="#">나의 예약목록</a></li>
+		          </ul>
+		        </li>
+        	</c:if>
+        	<c:if test="${sessionScope.sessionAdmin != 1 }">
+        		<li class="nav-item dropdown">
+		          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		            ${sessionScope.sessionID }
+		          </a>
+		          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+		            <li><a class="dropdown-item" href="${mycontext}/web/member/mypageForm?mnum=${sessionScope.sessionMnum}">마이페이지</a></li>
+		            <li><a class="dropdown-item" href="${mycontext}/web/logout">로그아웃</a></li>
+		            <li><hr class="dropdown-divider"></li>
+		            <li><a class="dropdown-item" href="#">나의 예약목록</a></li>
+		          </ul>
+		        </li>
+        	</c:if>
+        </c:if>
       </ul>
     </div>
   </div>

@@ -56,19 +56,29 @@ $(function(){
 			reader.onload = function(e) {
 				<%-- e.target.result --%>
 				console.log("Path :"+e.target.result);
-				$('#imgx').attr('src', e.target.result); 
+				$('#bimg').attr('src', e.target.result); 
 			}
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
 	$(function(){
 		<%-- upform.jsp에서 이미지 미리 보기 기능 --%>
-		$('#mfile').change(function() {
+		$('#bfile').change(function() {
 			readURL(this);
 		});
 		
 
 	})
+	$('#dbtn1').click(function(){
+		location.href = "${pageContext.request.contextPath }/web/board/list";
+	})
+	$('#dbtn2').click(function(){
+		location.href = "${pageContext.request.contextPath }/web/board/updateForm?bnum=${bnum}";
+	})
+	$('#dbtn3').click(function(){
+		location.href = "${pageContext.request.contextPath }/web/board/delete?bnum=${bnum}";
+	})
+	
 </script>
 </body>
 </html>

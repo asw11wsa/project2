@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	<select id="idcheck" parameterType="memdto" resultType="int">
+		select count(*) from member where mid = #{mid} and mpwd = #{mpwd}
+	</select>
+	<select id="loginkeep" parameterType="memdto" resultType="memdto">
+		select * from member where mid = #{mid} and mpwd = #{mpwd}
+	</select>
+	 <select id="mypage" resultType="memdto" parameterType="int">
+	select * from member where mnum = #{mnum}
+</select>
+
+ <select id="totalCount" resultType="int">
+ 	select count(*) from member
+ </select>
+	<update id="update" parameterType="memdto">
+	update member set mpwd=#{mpwd},  memail=#{memail}, mphone=#{mphone}, madr=#{madr} where mnum=#{mnum}
+	</update>
+
+	<delete id="delete"  parameterType="int" >
+		delete from member where mnum = #{mnum}
+	</delete>
+	
+</mapper>

@@ -69,10 +69,13 @@ public class PageModulesAdvice {
 			// begin ~ end  구하는 공식
 			beginPerPage = (nowPage - 1) * numPerPage + 1;
 			endPerPage = (beginPerPage-1) + numPerPage;
-			SearchPageDTO dto = new SearchPageDTO();
+			SearchPageDTO dto = (SearchPageDTO)m.asMap().get("dto");
 			dto.setStart(beginPerPage);
 			dto.setEnd(endPerPage);
-		    List<? extends SuperDTO> list = pageListInter.getList(dto); 
+		    List<? extends SuperDTO> list = pageListInter.getList(dto);
+		    System.out.println(dto.getSearchkey());
+		    System.out.println(dto.getSearchval());
+		    
 		    m.addAttribute("list", list);
 			int startPage = (int)((nowPage-1)/pagePerBlock)*pagePerBlock+1;
 			int endPage = startPage + pagePerBlock - 1;
@@ -81,6 +84,8 @@ public class PageModulesAdvice {
 		    }
 			System.out.println("startPage:"+startPage);
 			System.out.println("endPage:"+endPage);
+			m.addAttribute("searchkey", dto.getSearchkey());
+			m.addAttribute("searchval", dto.getSearchval());
 			m.addAttribute("startPage", startPage);
 			m.addAttribute("endPage", endPage);
 			m.addAttribute("nowPage", nowPage);

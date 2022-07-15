@@ -8,5 +8,7 @@
  		<typeAlias type="com.project.www.dto.AfterTourDTO" alias="atdto"/>
  		<typeAlias type="com.project.www.dto.BookingDTO" alias="bidto"/>
  		<typeAlias type="com.project.www.dto.SearchPageDTO" alias="spdto"/>
+ 		<typeAlias type="com.project.www.dto.MemberDTO" alias="memdto"/>
+ 		<typeAlias type="com.project.www.dto.BoardDTO" alias="bdto"/>
  	</typeAliases>
  </configuration>
