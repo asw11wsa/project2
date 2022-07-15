@@ -3,8 +3,17 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="tourlist">
-	<select id="list" resultType="tldto" parameterType="map">
-		select * from (select rownum r_num, t.* from (select * from tourlist order by 1 desc) t) where r_num between #{start} and #{end}
+	<select id="list" resultType="tldto" parameterType="spdto">
+		select * from (select rownum r_num, t.* from (select * from tourlist
+		<where>
+			<if test="searchtitle != null">
+		        title like	'%' || #{searchtitle} || '%'
+		    </if>
+		    <if test="searchregion != null">
+		        region like '%' || #{searchregion} || '%'
+		    </if>
+		</where>
+		 order by 1 desc) t) where r_num between #{start} and #{end}
 	</select>
 	<select id="detail" resultType="tldto" parameterType="int">
 		select * from tourlist where num = #{num}

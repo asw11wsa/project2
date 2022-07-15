@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.www.dto.SearchPageDTO;
 import com.project.www.dto.TourListDTO;
 
 @Repository
@@ -16,8 +17,8 @@ public class TourListDAO implements TourListDAOInter{
 	private SqlSessionTemplate ss;
 
 	@Override
-	public List<TourListDTO> getList(Map<String, Integer> map) {
-		return ss.selectList("tourlist.list", map);
+	public List<TourListDTO> getList(SearchPageDTO dto) {
+		return ss.selectList("tourlist.list", dto);
 	}
 
 	@Override

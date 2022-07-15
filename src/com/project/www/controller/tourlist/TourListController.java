@@ -2,6 +2,7 @@ package com.project.www.controller.tourlist;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,9 +15,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.www.dao.TourListDAOInter;
+import com.project.www.dto.SearchPageDTO;
 import com.project.www.dto.TourListDTO;
 
 @Controller
@@ -27,12 +30,17 @@ public class TourListController {
 	private TourListDAOInter tourListDAOInter;
 
 	@GetMapping(value = "/list")
-	public ModelAndView getlist(String cPage) {
+	public ModelAndView getlist(String cPage,@RequestParam(defaultValue = "") String searchname,@RequestParam(defaultValue = "") String searchval) {
 		ModelAndView mav = new ModelAndView();
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("start", 1);
-		map.put("end", 8);
-		List<TourListDTO> list = tourListDAOInter.getList(map);
+		SearchPageDTO dto = new SearchPageDTO();
+		dto.setStart(1);
+		dto.setEnd(8);
+		if(searchname.equals("searchtitle")) {
+			dto.setSearchtitle(searchval);
+		}else if(searchname.equals("searchregion")) {
+			dto.setSearchregion(searchval);
+		}
+		List<TourListDTO> list = tourListDAOInter.getList(dto);
 		mav.addObject("list", list);
 		mav.setViewName("tourlist/list");
 		return mav;
@@ -104,16 +112,6 @@ public class TourListController {
 		TourListDTO vo = tourListDAOInter.tourDetail(num);
 		mav.addObject("vo", vo);
 		mav.setViewName("tourlist/detail");
-		return mav;
-	}
-	
-	@GetMapping(value = "book")
-	public ModelAndView booking(int num,int adult,int children) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("num", num);
-		mav.addObject("adult", adult);
-		mav.addObject("children", children);
-		mav.setViewName("tourlist/book");
 		return mav;
 	}
 }

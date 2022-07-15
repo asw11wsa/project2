@@ -20,9 +20,7 @@ public class TourListDTO extends SuperDTO{
 	private MultipartFile mfilec;
 	private List<TourAfterDTO> tourafters;
 	private List<BookingDTO> bookings;
-	public List<BookingDTO> getBookings() {
-		return bookings;
-	}
+	
 	public void setBookings(List<BookingDTO> bookings) {
 		this.bookings = bookings;
 	}

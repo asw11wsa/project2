@@ -3,9 +3,38 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="booking">
- 	<insert id="add" parameterType="java.util.List">
- 		<foreach collection="list" item="e" separator=" " open="insert all" close="select * from dual">
- 			into booking values(booing.nextVal,)
- 		</foreach>
- 	</insert>
+    <insert id="add" parameterType="java.util.List">
+       <selectKey keyProperty="val" resultType="int" order="BEFORE">
+          select booking_booknum_seq.nextVal from dual
+       </selectKey>
+       insert into booking (
+          num
+          ,tournum
+          ,personchk
+          ,jumin
+          ,phone
+          ,email
+          ,engfirst
+          ,englast
+          ,booker
+          ,name
+          ,booknum
+       ) 
+       select booking_seq.nextVal as num, A.* from(
+       <foreach collection="list" item="e" separator="union all">
+          select
+          #{e.tournum} as tournum
+          ,#{e.personchk} as personchk
+          ,#{e.jumin} as jumin
+          ,#{e.phone} as phone
+          ,#{e.email} as email
+          ,#{e.engfirst} as engfirst
+          ,#{e.englast} as englast
+          ,#{e.booker} as booker
+          ,#{e.name} as name
+          ,#{val} as booknum
+          from dual
+       </foreach>
+       ) A
+    </insert>
  </mapper>

@@ -187,7 +187,7 @@
 			if($("#children").val() == 0 && $("#adult").val() == 0){
 				alert("인원을 선택해 주세요");
 			}else{
-				location = `${pageContext.request.contextPath }/web/tourlist/book?num=${vo.num}&adult=\${$("#adult").val()}&children=\${$("#children").val()}`;	
+				location = `${pageContext.request.contextPath }/web/booking/book?num=${vo.num}&adult=\${$("#adult").val()}&children=\${$("#children").val()}`;	
 			}
 		})
 	})
