@@ -6,6 +6,7 @@ public class SearchPageDTO {
 	private int start;
 	private int end;
 	private String cPage;
+	
 	public String getcPage() {
 		return cPage;
 	}

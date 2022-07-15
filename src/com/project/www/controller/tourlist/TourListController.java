@@ -112,7 +112,9 @@ public class TourListController {
 	public ModelAndView detail(int num) {
 		ModelAndView mav = new ModelAndView();
 		TourListDTO vo = tourlist.tourDetail(num);
+		mav.addObject("list", vo.getTourafters());
 		mav.addObject("vo", vo);
+		//mav.addObject("list", list);
 		mav.setViewName("tourlist/detail");
 		return mav;
 	}

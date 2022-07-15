@@ -15,8 +15,27 @@
 		</where>
 		 order by 1 desc) t) where r_num between #{start} and #{end}
 	</select>
-	<select id="detail" resultType="tldto" parameterType="int">
-		select * from tourlist where num = #{num}
+	
+	<resultMap type="tldto" id="withafter">
+		<id property="num" column="num" javaType="int"/>
+		<result property="title" column="title"/>
+		<result property="region" column="region"/>
+		<result property="content" column="content"/>
+		<result property="tourdate" column="tourdate" javaType="int"/>
+		<result property="imga" column="imga"/>
+		<result property="imgb" column="imgb"/>
+		<result property="imgc" column="imgc"/>
+		<collection property="tourafters" javaType="java.util.List" ofType="atdto">
+			<result property="title" column="atitle"/>
+			<result property="content" column="acontent"/>
+			<result property="booker" column="booker"/>
+			<result property="imgn" column="imgn"/>
+			<result property="stars" column="stars" javaType="int"/>
+		</collection>
+	</resultMap>
+	
+	<select id="detail" resultMap="withafter" parameterType="int">
+		select t.num,t.title,t.region,t.content,t.tourdate,t.imga,t.imgb,t.imgc,a.title as atitle,a.content as acontent,a.booker,a.imgn,a.stars  from tourlist t,aftertour a  where t.num = a.tournum and t.num = #{num}
 	</select>
 	<insert id="add" parameterType="tldto">
 		insert into tourlist values(tourlist_seq.nextVal,#{title},#{region},#{content},#{tourdate},#{imga},#{imgb},#{imgc},sysdate,sysdate)

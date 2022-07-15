@@ -56,7 +56,12 @@
 			</div>
 			<%-- 상품 정보 --%>
 			<div class="tab-pane fade" id="nav-profile" role="tabpanel"
-				aria-labelledby="nav-profile-tab" tabindex="0">여행후기</div>
+				aria-labelledby="nav-profile-tab" tabindex="0">
+				<c:forEach var="list" items="${list }">
+					<p>${list.title}</p>
+				</c:forEach>
+				
+				</div>
 			<%-- 법률 정보 --%>
 			<div class="tab-pane fade" id="nav-contact" role="tabpanel"
 				aria-labelledby="nav-contact-tab" tabindex="0">

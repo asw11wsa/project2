@@ -5,7 +5,7 @@
  <configuration>
  	<typeAliases>
  		<typeAlias type="com.project.www.dto.TourListDTO" alias="tldto"/>
- 		<typeAlias type="com.project.www.dto.TourAfterDTO" alias="tadto"/>
+ 		<typeAlias type="com.project.www.dto.AfterTourDTO" alias="atdto"/>
  		<typeAlias type="com.project.www.dto.BookingDTO" alias="bidto"/>
  		<typeAlias type="com.project.www.dto.SearchPageDTO" alias="spdto"/>
  	</typeAliases>

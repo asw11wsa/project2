@@ -1,6 +1,8 @@
 package com.project.www.dto;
 
-public class TourAfterDTO extends SuperDTO{
+import org.springframework.web.multipart.MultipartFile;
+
+public class AfterTourDTO extends SuperDTO{
 	private int num;
 	private int tournum;
 	private int booknum;
@@ -8,7 +10,15 @@ public class TourAfterDTO extends SuperDTO{
 	private String content;
 	private String booker;
 	private String imgn;
-	private int starts;
+	private int stars;
+	private MultipartFile mfile;
+	
+	public MultipartFile getMfile() {
+		return mfile;
+	}
+	public void setMfile(MultipartFile mfile) {
+		this.mfile = mfile;
+	}
 	public int getNum() {
 		return num;
 	}
@@ -51,12 +61,13 @@ public class TourAfterDTO extends SuperDTO{
 	public void setImgn(String imgn) {
 		this.imgn = imgn;
 	}
-	public int getStarts() {
-		return starts;
+	public int getStars() {
+		return stars;
 	}
-	public void setStarts(int starts) {
-		this.starts = starts;
+	public void setStars(int stars) {
+		this.stars = stars;
 	}
+	
 	
 	
 }

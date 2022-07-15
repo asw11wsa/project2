@@ -18,9 +18,11 @@ public class TourListDTO extends SuperDTO{
 	private MultipartFile mfilea;
 	private MultipartFile mfileb;
 	private MultipartFile mfilec;
-	private List<TourAfterDTO> tourafters;
+	private List<AfterTourDTO> tourafters;
 	private List<BookingDTO> bookings;
-	
+	public List<BookingDTO> getBookings() {
+		return bookings;
+	}
 	public void setBookings(List<BookingDTO> bookings) {
 		this.bookings = bookings;
 	}
@@ -42,10 +44,10 @@ public class TourListDTO extends SuperDTO{
 	public void setMfilec(MultipartFile mfilec) {
 		this.mfilec = mfilec;
 	}
-	public List<TourAfterDTO> getTourafters() {
+	public List<AfterTourDTO> getTourafters() {
 		return tourafters;
 	}
-	public void setTourafters(List<TourAfterDTO> tourafters) {
+	public void setTourafters(List<AfterTourDTO> tourafters) {
 		this.tourafters = tourafters;
 	}
 	public int getNum() {

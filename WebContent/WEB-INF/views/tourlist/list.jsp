@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<div class="my-3 w-25 text-right d-flex flex-row-reverse">
-		<form class="d-flex" role="search" method="get">
+	<div class="my-3 w-25 text-right d-flex justify-content-center">
+		<form class="d-flex justify-content-center" role="search" method="get">
 		<div class="input-group">
 			<select class="form-select" name="searchname">
 				<option value="searchtitle">Á¦¸ñ</option>

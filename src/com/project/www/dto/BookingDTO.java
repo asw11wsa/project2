@@ -11,6 +11,13 @@ public class BookingDTO extends SuperDTO{
 	private String englast;
 	private String booker;
 	private String name;
+	private int booknum;
+	public int getBooknum() {
+		return booknum;
+	}
+	public void setBooknum(int booknum) {
+		this.booknum = booknum;
+	}
 	public String getName() {
 		return name;
 	}
