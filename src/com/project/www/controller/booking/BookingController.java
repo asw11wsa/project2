@@ -33,42 +33,42 @@ public class BookingController {
 	}
 
 	@PostMapping("/addbooking")
-	   public String addBooking(HttpServletRequest request){
-	      List<BookingDTO> list = new ArrayList<BookingDTO>();
-	      String[] personchk = request.getParameterValues("personchk");
-	      String[] jumin = request.getParameterValues("jumin");
-	      String[] name = request.getParameterValues("name");
-	      String[] email = request.getParameterValues("email");
-	      String[] engfirst = request.getParameterValues("engfirst");
-	      String[] englast = request.getParameterValues("englast");
-	      String[] phone = request.getParameterValues("phone");
-	      String tournum = request.getParameter("tournum");
-	      
-	      for(int i=0; i<personchk.length ; i++) {
-	         BookingDTO dto = new BookingDTO();
-	         dto.setPersonchk(personchk[i]);
-	         System.out.println(personchk[i]);
-	         dto.setJumin(Integer.parseInt(jumin[i]));
-	         System.out.println(jumin[i]);
-	         dto.setName(name[i]);
-	         System.out.println(name[i]);
-	         dto.setEmail(email[i]);
-	         System.out.println(email[i]);
-	         dto.setEngfirst(engfirst[i]);
-	         System.out.println(engfirst[i]);
-	         dto.setEnglast(englast[i]);
-	         System.out.println(englast[i]);
-	         dto.setTournum(Integer.parseInt(tournum));
-	         System.out.println(tournum);
-	         dto.setPhone(Integer.parseInt(phone[i]));
-	         System.out.println(phone[i]);
-	         dto.setBooker("test1");
-	         list.add(dto);
-	      }
-	      
-	      boolean result = bookingDAOInter.insert(list);
-	      System.out.println(result);
-	      return "redirect:/web/main";
-	   }
+   public String addBooking(HttpServletRequest request){
+      List<BookingDTO> list = new ArrayList<BookingDTO>();
+      String[] personchk = request.getParameterValues("personchk");
+      String[] jumin = request.getParameterValues("jumin");
+      String[] name = request.getParameterValues("name");
+      String[] email = request.getParameterValues("email");
+      String[] engfirst = request.getParameterValues("engfirst");
+      String[] englast = request.getParameterValues("englast");
+      String[] phone = request.getParameterValues("phone");
+      String tournum = request.getParameter("tournum");
+      
+      for(int i=0; i<personchk.length ; i++) {
+         BookingDTO dto = new BookingDTO();
+         dto.setPersonchk(personchk[i]);
+         System.out.println(personchk[i]);
+         dto.setJumin((int)(Long.parseLong(jumin[i])));
+         System.out.println(jumin[i]);
+         dto.setName(name[i]);
+         System.out.println(name[i]);
+         dto.setEmail(email[i]);
+         System.out.println(email[i]);
+         dto.setEngfirst(engfirst[i]);
+         System.out.println(engfirst[i]);
+         dto.setEnglast(englast[i]);
+         System.out.println(englast[i]);
+         dto.setTournum(Integer.parseInt(tournum));
+         System.out.println(tournum);
+         dto.setPhone(Integer.parseInt(phone[i]));
+         System.out.println(phone[i]);
+         dto.setBooker("test1");
+         list.add(dto);
+      }
+      
+      boolean result = bookingDAOInter.insert(list);
+      System.out.println(result);
+      return "redirect:/web/main";
+   }
 
 }

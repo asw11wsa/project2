@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
 import com.project.www.dao.PageListInter;
+import com.project.www.dto.SearchPageDTO;
 import com.project.www.dto.SuperDTO;
 
 
@@ -27,14 +28,14 @@ public class PageModulesAdvice {
 	 private  int nowPage = 1;// 현재 페이지 값
 	 private  int nowBlock = 1;// 현재 블럭
 	 private  int totalRecord = 0;// 총 게시물 수   
-	 private  int numPerPage = 10;// 한 페이지당 보여질 게시물 수
+	 private  int numPerPage = 8;// 한 페이지당 보여질 게시물 수
 	 private  int pagePerBlock = 5;// 한 블럭당 보여질 페이지 수
 	 private  int totalPage = 0;// 전체 페이지 수 => totalRecord/numPerPage
 	 private  int totalBlock = 0;// 전체 블럭 수   
 	 private  int beginPerPage = 0;// 각 페이지별 시작 게시물의 index값
 	 private  int endPerPage = 0;// 각 페이지별 마지막 게시물의 index값  
 	 
-	 @Around("execution(* kr.co.kosmo.mvc.controller.*.*Controller.*List(..))")
+	 @Around("execution(* com.project.www.controller.*.*Controller.*List(..))")
 	 public String pageModule(ProceedingJoinPoint jp) {
 		 //------------ 선행처리 영역 
 		 Object[] args = jp.getArgs();
@@ -68,10 +69,10 @@ public class PageModulesAdvice {
 			// begin ~ end  구하는 공식
 			beginPerPage = (nowPage - 1) * numPerPage + 1;
 			endPerPage = (beginPerPage-1) + numPerPage;
-			Map<String, Integer> map = new HashMap<String, Integer>();
-		    map.put("begin", beginPerPage);
-		    map.put("end", endPerPage);
-		    List<? extends SuperDTO> list = pageListInter.getList(map); 
+			SearchPageDTO dto = new SearchPageDTO();
+			dto.setStart(beginPerPage);
+			dto.setEnd(endPerPage);
+		    List<? extends SuperDTO> list = pageListInter.getList(dto); 
 		    m.addAttribute("list", list);
 			int startPage = (int)((nowPage-1)/pagePerBlock)*pagePerBlock+1;
 			int endPage = startPage + pagePerBlock - 1;

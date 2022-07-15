@@ -8,18 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.www.dto.SearchPageDTO;
+import com.project.www.dto.SuperDTO;
 import com.project.www.dto.TourListDTO;
 
-@Repository
+@Repository("tourList")
 public class TourListDAO implements TourListDAOInter{
 	
 	@Autowired
 	private SqlSessionTemplate ss;
 
-	@Override
-	public List<TourListDTO> getList(SearchPageDTO dto) {
-		return ss.selectList("tourlist.list", dto);
-	}
+	
 
 	@Override
 	public boolean addTour(TourListDTO dto) {
@@ -54,6 +52,16 @@ public class TourListDAO implements TourListDAOInter{
 	@Override
 	public TourListDTO tourDetail(int num) {
 		return ss.selectOne("tourlist.detail", num);
+	}
+
+	@Override
+	public List<? extends SuperDTO> getList(SearchPageDTO dto) {
+		return ss.selectList("tourlist.list", dto);
+	}
+
+	@Override
+	public int getCnt(SearchPageDTO dto) {
+		return ss.selectOne("tourlist.total", dto);
 	}
 
 }

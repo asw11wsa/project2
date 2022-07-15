@@ -1,6 +1,6 @@
 package com.project.www.dto;
 
-public class TourAfterDTO {
+public class TourAfterDTO extends SuperDTO{
 	private int num;
 	private int tournum;
 	private int booknum;

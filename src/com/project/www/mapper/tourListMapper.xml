@@ -27,4 +27,15 @@
 	<update id="update" parameterType="tldto">
 		update from tourlist set title = #{title}, region = #{region}, content = #{content},tourdate = #{tourdate}, imga = #{imga}, imgb = #{imgb}, imgc = #{imgc}, updatedate = sysdate where num = #{num}
 	</update>
+	<select id="total" resultType="int" parameterType="spdto">
+		select count(*) from tourlist
+		<where>
+			<if test="searchtitle != null">
+		        title like	'%' || #{searchtitle} || '%'
+		    </if>
+		    <if test="searchregion != null">
+		        region like '%' || #{searchregion} || '%'
+		    </if>
+		</where>
+	</select>
 </mapper>

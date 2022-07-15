@@ -5,6 +5,13 @@ public class SearchPageDTO {
 	private String searchregion;
 	private int start;
 	private int end;
+	private String cPage;
+	public String getcPage() {
+		return cPage;
+	}
+	public void setcPage(String cPage) {
+		this.cPage = cPage;
+	}
 	public String getSearchtitle() {
 		return searchtitle;
 	}

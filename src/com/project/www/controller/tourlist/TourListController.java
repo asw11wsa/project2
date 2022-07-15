@@ -21,17 +21,17 @@ import org.springframework.web.servlet.ModelAndView;
 import com.project.www.dao.TourListDAOInter;
 import com.project.www.dto.SearchPageDTO;
 import com.project.www.dto.TourListDTO;
+import com.project.www.service.TourListService;
 
 @Controller
 @RequestMapping(value = "/tourlist")
 public class TourListController {
 	
 	@Autowired
-	private TourListDAOInter tourListDAOInter;
+	private TourListDAOInter tourlist;
 
 	@GetMapping(value = "/list")
-	public ModelAndView getlist(String cPage,@RequestParam(defaultValue = "") String searchname,@RequestParam(defaultValue = "") String searchval) {
-		ModelAndView mav = new ModelAndView();
+	public String tourList(Model m ,String cPage,@RequestParam(defaultValue = "") String searchname,@RequestParam(defaultValue = "") String searchval) {
 		SearchPageDTO dto = new SearchPageDTO();
 		dto.setStart(1);
 		dto.setEnd(8);
@@ -40,10 +40,12 @@ public class TourListController {
 		}else if(searchname.equals("searchregion")) {
 			dto.setSearchregion(searchval);
 		}
-		List<TourListDTO> list = tourListDAOInter.getList(dto);
-		mav.addObject("list", list);
-		mav.setViewName("tourlist/list");
-		return mav;
+		int totalRecord = tourlist.getCnt(dto);
+		//model.addAttribute("list", list);
+		m.addAttribute("totalRecord", totalRecord);
+		List<TourListDTO> list = (List<TourListDTO>)tourlist.getList(dto);
+		m.addAttribute("list", list);
+		return "tourlist/list";
 	}
 	
 	@PostMapping(value = "/insert")
@@ -93,7 +95,7 @@ public class TourListController {
 			e.printStackTrace();
 		}
 		
-		tourListDAOInter.addTour(dto);
+		tourlist.addTour(dto);
 		
 		return "redirect:/web/tourlist/list";
 	}
@@ -109,7 +111,7 @@ public class TourListController {
 	@GetMapping(value = "/detail")
 	public ModelAndView detail(int num) {
 		ModelAndView mav = new ModelAndView();
-		TourListDTO vo = tourListDAOInter.tourDetail(num);
+		TourListDTO vo = tourlist.tourDetail(num);
 		mav.addObject("vo", vo);
 		mav.setViewName("tourlist/detail");
 		return mav;
