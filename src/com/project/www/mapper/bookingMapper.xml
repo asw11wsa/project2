@@ -37,4 +37,40 @@
        </foreach>
        ) A
     </insert>
+    <select id="bookinglist" resultType="tldto" parameterType="map">
+		select * from tourlist where num in (select tournum from booking where booker = #{id} group by tournum)
+	</select>
+	 
+ <!--	
+	<select id="totalcount" resultType="int" parameterType="spdto">
+ 		select count(*) from booking
+ 		<where>
+			<if test="searchtitle != null">
+		        title like	'%' || #{searchtitle} || '%'
+		    </if>
+		    <if test="searchregion != null">
+		        region like '%' || #{searchregion} || '%'
+		    </if>
+		</where>
+ 	</select>
+ 	-->
+ 	<select id="bookingdetail" resultType="bidto" parameterType="map">
+		select * from booking where booker=#{id} and tournum= #{num}
+	</select>
+
+<!-- 
+	<select id="list" resultType="tldto" parameterType="spdto">
+		select * from (select rownum r_num, t.* from (select * from tourlist
+		<where>
+			<if test="searchtitle != null">
+		        title like	'%' || #{searchtitle} || '%'
+		    </if>
+		    <if test="searchregion != null">
+		        region like '%' || #{searchregion} || '%'
+		    </if>
+		</where>
+		 order by 1 desc) t) where r_num between #{start} and #{end}
+		 and num in (select tournum from booking where booker = #{id} group by tournum)
+	</select>
+	 -->
  </mapper>

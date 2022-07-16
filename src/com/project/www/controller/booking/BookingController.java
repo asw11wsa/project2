@@ -1,19 +1,24 @@
 package com.project.www.controller.booking;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.www.dao.BookingDAOInter;
+import com.project.www.dao.TourListDAOInter;
 import com.project.www.dto.BookingDTO;
+import com.project.www.dto.TourListDTO;
 
 @Controller
 @RequestMapping(value = "/booking")
@@ -21,6 +26,9 @@ public class BookingController {
 	
 	@Autowired
 	private BookingDAOInter bookingDAOInter;
+	
+	@Autowired
+	private TourListDAOInter tourlist; 
 	
 	@GetMapping(value = "book")
 	public ModelAndView booking(int num,int adult,int children) {
@@ -70,5 +78,26 @@ public class BookingController {
       System.out.println(result);
       return "redirect:/web/main";
    }
+	
+	@RequestMapping(value = "/list")
+	public String bookingList(Model m) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", "test1");
+		m.addAttribute("list", bookingDAOInter.getTourList(map));
+		return "booking/list";
+	}
+	
+	@RequestMapping(value = "/detaillist")
+	public String bookingDetailList(Model m, int num) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", "test1");
+		map.put("num", String.valueOf(num));
+		m.addAttribute("list", bookingDAOInter.bookingDetail(map));
+		
+		TourListDTO vo = tourlist.tourDetail(num);
+		m.addAttribute("vo", vo);
+		
+		return "booking/detail";
+	}
 
 }
