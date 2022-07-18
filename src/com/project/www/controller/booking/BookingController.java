@@ -94,9 +94,6 @@ public class BookingController {
 		map.put("num", String.valueOf(num));
 		m.addAttribute("list", bookingDAOInter.bookingDetail(map));
 		
-		TourListDTO vo = tourlist.tourDetail(num);
-		m.addAttribute("vo", vo);
-		
 		return "booking/detail";
 	}
 

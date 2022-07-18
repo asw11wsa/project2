@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.project.www.dao.BoardDaoInter;
 import com.project.www.dto.BoardDTO;
+import com.project.www.dto.SearchPageDTO;
 
 
 
@@ -65,8 +66,10 @@ public class BoardController {
 		}
 		@RequestMapping("/list")
 		public String boardList(Model model,String cPage, String searchid) {
+			SearchPageDTO dto = new SearchPageDTO();
 			int totalRecord = boardList.getCnt();
 			model.addAttribute("totalRecord", totalRecord);
+			model.addAttribute("dto", dto);
 			return  "updemo/uplist";
 		}
 		

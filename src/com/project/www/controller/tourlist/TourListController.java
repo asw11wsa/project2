@@ -109,10 +109,15 @@ public class TourListController {
 	@GetMapping(value = "/detail")
 	public ModelAndView detail(int num) {
 		ModelAndView mav = new ModelAndView();
-		TourListDTO vo = tourlist.tourDetail(num);
-		mav.addObject("list", vo.getTourafters());
-		mav.addObject("vo", vo);
-		//mav.addObject("list", list);
+		if(tourlist.getAfterCnt(num) != 0) {
+			TourListDTO vo = tourlist.tourADetail(num);
+			mav.addObject("list", vo.getTourafters());
+			mav.addObject("vo", vo);
+		}else {
+			TourListDTO vo = tourlist.tourBDetail(num);
+			mav.addObject("vo", vo);
+		}
+		
 		mav.setViewName("tourlist/detail");
 		return mav;
 	}

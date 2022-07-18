@@ -104,7 +104,14 @@
                         </c:choose>
                      </ol>
                   </td>
-                  <td><a href="${pageContext.request.contextPath}/web/board/upform">글작성</a></td>
+                  <td>
+	                  <c:if test="${sessionScope.sessionID != null }">
+	                  	<a href="${pageContext.request.contextPath}/web/upload/upform">글작성</a>
+	                  </c:if>
+	                  <c:if test="${sessionScope.sessionID == null }">
+	                  	<a href="${pageContext.request.contextPath}/web/loginform">글작성</a>
+	                  </c:if>
+                  </td>
                </tr>
             </tfoot>
          </table>

@@ -25,6 +25,6 @@ public class TourListService {
 	}
 	
 	public TourListDTO tourDetail(int num) {
-		return tourlist.tourDetail(num);
+		return tourlist.tourADetail(num);
 	}
 }

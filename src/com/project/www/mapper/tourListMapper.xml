@@ -34,8 +34,14 @@
 		</collection>
 	</resultMap>
 	
-	<select id="detail" resultMap="withafter" parameterType="int">
+	<select id="adetail" resultMap="withafter" parameterType="int">
 		select t.num,t.title,t.region,t.content,t.tourdate,t.imga,t.imgb,t.imgc,a.title as atitle,a.content as acontent,a.booker,a.imgn,a.stars  from tourlist t,aftertour a  where t.num = a.tournum and t.num = #{num}
+	</select>
+	<select id="bdetail" resultType="tldto" parameterType="int">
+		select * from tourlist where num = #{num}
+	</select>
+	<select id="aftercnt" resultType="int" parameterType="int">
+		select count(*) from aftertour where tournum = #{num}
 	</select>
 	<insert id="add" parameterType="tldto">
 		insert into tourlist values(tourlist_seq.nextVal,#{title},#{region},#{content},#{tourdate},#{imga},#{imgb},#{imgc},sysdate,sysdate)

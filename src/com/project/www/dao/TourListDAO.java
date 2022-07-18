@@ -50,11 +50,6 @@ public class TourListDAO implements TourListDAOInter{
 	}
 
 	@Override
-	public TourListDTO tourDetail(int num) {
-		return ss.selectOne("tourlist.detail", num);
-	}
-
-	@Override
 	public List<? extends SuperDTO> getList(SearchPageDTO dto) {
 		return ss.selectList("tourlist.list", dto);
 	}
@@ -62,6 +57,21 @@ public class TourListDAO implements TourListDAOInter{
 	@Override
 	public int getCnt(SearchPageDTO dto) {
 		return ss.selectOne("tourlist.total", dto);
+	}
+	
+	@Override
+	public TourListDTO tourADetail(int num) {
+		return ss.selectOne("tourlist.adetail", num);
+	}
+
+	@Override
+	public TourListDTO tourBDetail(int num) {
+		return ss.selectOne("tourlist.bdetail", num);
+	}
+
+	@Override
+	public int getAfterCnt(int num) {
+		return ss.selectOne("tourlist.aftercnt", num);
 	}
 
 }

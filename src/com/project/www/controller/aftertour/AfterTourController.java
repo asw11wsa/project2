@@ -64,7 +64,7 @@ public class AfterTourController {
 	@GetMapping(value = "/review")
 	public ModelAndView review(@RequestParam(defaultValue = "19") int num) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("vo", tourList.tourDetail(num));
+		mav.addObject("vo", tourList.tourBDetail(num));
 		mav.setViewName("aftertour/review");
 		return mav;
 	}
