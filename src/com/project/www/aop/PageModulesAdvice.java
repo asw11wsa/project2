@@ -37,45 +37,34 @@ public class PageModulesAdvice {
 	 
 	 @Around("execution(* com.project.www.controller.*.*Controller.*List(..))")
 	 public String pageModule(ProceedingJoinPoint jp) {
-		 //------------ 선행처리 영역 
 		 Object[] args = jp.getArgs();
-		 //첫번째 인자 : Model, 두번째 인자 : 페이지값 String cPage
 		 Model m = (Model) args[0];
-		 String cPage = (String) args[1];
+		 // 2번째 인자로 SearchPageDTO를 가져와서 페이징 처리
+		 SearchPageDTO dto = (SearchPageDTO) args[1];
 		 
-		 // Model가지고 있는 클래스의 이름을 가져와서 결국 Dao의 선택자로 사용하겠다.
-		 //upBoardList or memberList  => 각각의 Dao의 Bean의 이름으로 선택 
 		 String myDao = jp.getSignature().getName();
 		 System.out.println("myDao =>"+myDao);
-		 // 결과적으로 UpBoardDao, MemberDao는 무조건 이름이 upBoardList or memberList 설정되어 있어야 불려 올 수 있다.
-		 // @Repository("memberList")
 		 PageListInter pageListInter =   applicationContext.getBean(myDao,PageListInter.class);
 		String url=null;
 		try {
 			url = (String) jp.proceed();
-			 // total값을 가져 와보자.
+			
 			 totalRecord = (int) m.asMap().get("totalRecord");
-			 System.out.println("totalRecord =>"+totalRecord);
-			 //----------기존 페이지 코드를 붙여 넣기
-			 // 총 게시물 수 가져오기
+			 
 			totalPage = (int) Math.ceil(totalRecord/(double)numPerPage);
 			totalBlock = (int) Math.ceil((double) totalPage/pagePerBlock);
-			//현재 페이지를 요청할 때 파라미터로 현재 페이지값을 받는다. 1 ~~~~~~~ n
-			//String s_page = request.getParameter("cPage");
-			String s_page = cPage;
-			if(s_page != null){
-				nowPage = Integer.parseInt(s_page);
-		    }
-			// begin ~ end  구하는 공식
+			
+			// dto 에 생성자로 초기화를 해서 기본으로 cPage = 1 이 있기 때문에  if문처리를 안해됨
+			nowPage = Integer.parseInt(dto.getcPage());
+			
 			beginPerPage = (nowPage - 1) * numPerPage + 1;
 			endPerPage = (beginPerPage-1) + numPerPage;
-			SearchPageDTO dto = (SearchPageDTO)m.asMap().get("dto");
 			dto.setStart(beginPerPage);
 			dto.setEnd(endPerPage);
+			//dto 를 전달해서 데이터 베이스에서 list를 출력하도록 한다.
 		    List<? extends SuperDTO> list = pageListInter.getList(dto);
-		    System.out.println(dto.getSearchkey());
-		    System.out.println(dto.getSearchval());
 		    
+		    // 데이터 베이스에서 가져온 list 를 jsp 파일에서 사용할수 있도록 전달
 		    m.addAttribute("list", list);
 			int startPage = (int)((nowPage-1)/pagePerBlock)*pagePerBlock+1;
 			int endPage = startPage + pagePerBlock - 1;
@@ -84,6 +73,8 @@ public class PageModulesAdvice {
 		    }
 			System.out.println("startPage:"+startPage);
 			System.out.println("endPage:"+endPage);
+			
+			// 검색을 할경우에 값을 jsp 에 전달해서 검색이 유지 되도록 하는 코드
 			m.addAttribute("searchkey", dto.getSearchkey());
 			m.addAttribute("searchval", dto.getSearchval());
 			m.addAttribute("startPage", startPage);

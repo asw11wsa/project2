@@ -65,8 +65,7 @@ public class BoardController {
 			return "redirect:/web/board/list";
 		}
 		@RequestMapping("/list")
-		public String boardList(Model model,String cPage, String searchid) {
-			SearchPageDTO dto = new SearchPageDTO();
+		public String boardList(Model model,SearchPageDTO dto) {
 			int totalRecord = boardList.getCnt();
 			model.addAttribute("totalRecord", totalRecord);
 			model.addAttribute("dto", dto);

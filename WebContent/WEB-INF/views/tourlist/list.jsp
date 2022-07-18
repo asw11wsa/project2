@@ -8,6 +8,7 @@
 				<option value="searchtitle">제목</option>
 				<option value="searchregion">지역</option>
 			</select>
+			<input type="hidden" name="startSearch" value="1">
 	        <input class="form-control me-2" name="searchval" type="search" placeholder="Search" aria-label="Search">
         </div>
         <button class="btn btn-outline-success" type="submit">검색</button>

@@ -23,10 +23,9 @@ public class AdminMemberController {
 	private AdminMemberDaoInter adminMemberDaoInter;
 	
 	@RequestMapping(value = "/adminMember")
-	public String adminMemberList(Model model, String cPage, String searchkey, String searchval) {
-		SearchPageDTO dto = new SearchPageDTO();
-		dto.setSearchkey(searchkey);
-		dto.setSearchval(searchval);
+	public String adminMemberList(Model model, SearchPageDTO dto) {
+		dto.setSearchkey(dto.getSearchkey());
+		dto.setSearchval(dto.getSearchval());
 		model.addAttribute("dto", dto);
 		int totalRecord = adminMemberDaoInter.getCnt(dto);
 		model.addAttribute("totalRecord", totalRecord);
