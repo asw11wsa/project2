@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="contact">
+ 	<insert id="add">
+ 		<if test='sender == "admin"'>
+ 		insert into contact values(contact_seq.nextVal,#{sender},#{receiver},#{msg},1,sysdate)
+ 		</if>
+ 		<if test='sender != "admin"'>
+ 		insert into contact values(contact_seq.nextVal,#{sender},#{receiver},#{msg},2,sysdate)
+ 		</if>
+ 	</insert>
+ 	<select id="list" resultType="cdto" parameterType="String">
+ 		select * from contact where sender = #{id} or receiver = #{id} order by createdate asc
+ 	</select>
+ 	<select id="usercnt" resultType="int" parameterType="String">
+ 		select count(*) from contact where status = 1 and receiver = #{id}
+ 	</select>
+ 	<update id="userstatus" parameterType="String">
+ 		update contact set status = 0 where receiver = #{id}
+ 	</update>
+ </mapper>

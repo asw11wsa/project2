@@ -10,5 +10,6 @@
  		<typeAlias type="com.project.www.dto.SearchPageDTO" alias="spdto"/>
  		<typeAlias type="com.project.www.dto.MemberDTO" alias="memdto"/>
  		<typeAlias type="com.project.www.dto.BoardDTO" alias="bdto"/>
+ 		<typeAlias type="com.project.www.dto.ContactDTO" alias="cdto"/>
  	</typeAliases>
  </configuration>
