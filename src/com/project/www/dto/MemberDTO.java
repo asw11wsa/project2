@@ -11,7 +11,15 @@ public class MemberDTO extends SuperDTO{
     private String mphone;
     private String madr;
     private String mdate;
+    private int wrongcnt;
     
+    
+	public int getWrongcnt() {
+		return wrongcnt;
+	}
+	public void setWrongcnt(int wrongcnt) {
+		this.wrongcnt = wrongcnt;
+	}
 	public String getMdate() {
 		return mdate;
 	}

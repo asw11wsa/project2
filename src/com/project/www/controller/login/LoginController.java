@@ -25,18 +25,18 @@ public class LoginController {
 	@PostMapping(value = "/loginProcess")
 	public ModelAndView loginProcess(HttpSession session, MemberDTO mdto) {
 		ModelAndView mav = new ModelAndView();
-		int cnt = memberDAOInter.logingCheck(mdto);
-		System.out.println(cnt);
-		if(cnt == 1) {
-			mdto = memberDAOInter.loginAfter(mdto);
-			if(mdto.getMnum() <= 5) {
-				session.setAttribute("sessionAdmin", 1);
-			}
-			session.setAttribute("sessionID", mdto.getMid());
-			session.setAttribute("sessionName", mdto.getMname());
-			session.setAttribute("sessionMnum", mdto.getMnum());
-		}
-		mav.addObject("cnt", cnt);
+//		int cnt = memberDAOInter.logingCheck(mdto);
+//		System.out.println(cnt);
+//		if(cnt == 1) {
+//			mdto = memberDAOInter.loginAfter(mdto);
+//			if(mdto.getMnum() <= 5) {
+//				session.setAttribute("sessionAdmin", 1);
+//			}
+//			session.setAttribute("sessionID", mdto.getMid());
+//			session.setAttribute("sessionName", mdto.getMname());
+//			session.setAttribute("sessionMnum", mdto.getMnum());
+//		}
+//		mav.addObject("cnt", cnt);
 		mav.setViewName("login/loginCheck");
 		return mav;
 	}	

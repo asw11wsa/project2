@@ -10,8 +10,7 @@
 		<li class="border-top my-3"></li>
 	</ul>
 	<div class="container">
-		<form action="loginProcess" method="post" id="loginInfo"
-			onsubmit="return checkValue()">
+		<form action="loginProcess" method="post" id="loginInfo">
 			<input type="hidden" name="reip" value="<%=request.getRemoteAddr()%>">
 			<div class="form-group">
 				<label for="id">ID</label> <input type="text" class="form-control"

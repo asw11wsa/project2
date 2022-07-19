@@ -23,5 +23,22 @@
 	<delete id="delete"  parameterType="int" >
 		delete from member where mnum = #{mnum}
 	</delete>
-	
+	<update id="wrongCnt" parameterType="String">
+		update member set wrongcnt = wrongcnt+1 where mid = #{mid}
+	</update>
+	<update id="lock" parameterType="map">
+		update member set idlock = #{lock} where mid = #{mid}
+	</update>
+	<update id="wrongCntInit" parameterType="String">
+		update member set wrongcnt = 0 where mid = #{mid}
+	</update>
+	<select id="getWrong" parameterType="String" resultType="int">
+		select wrongcnt from member where mid = #{mid}
+	</select>
+	<select id="getLock" parameterType="String" resultType="String">
+		select idlock from member where mid = #{mid}
+	</select>
+	<select id="getId" parameterType="String" resultType="int">
+		select count(*) from member where mid =#{mid}
+	</select>
 </mapper>

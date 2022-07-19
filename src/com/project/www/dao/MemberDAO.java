@@ -1,5 +1,7 @@
 package com.project.www.dao;
 
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -39,5 +41,29 @@ public class MemberDAO implements MemberDAOInter{
 	public int getCnt() {
 		int cnt = ss.selectOne("member.totalCount");
 		return cnt;
-	}	
+	}
+	@Override
+	public void wrongCntMember(String mid) {
+		ss.update("member.wrongCnt",mid);
+	}
+	@Override
+	public void lockMember(Map<String, String> map) {
+		ss.update("member.lock",map);
+	}
+	@Override
+	public void cntInit(String mid) {
+		ss.update("member.wrongCntInit",mid);
+	}
+	@Override
+	public int getWrong(String mid) {
+		return ss.selectOne("member.getWrong",mid);
+	}
+	@Override
+	public String getLock(String mid) {
+		return ss.selectOne("member.getLock",mid);
+	}
+	@Override
+	public int getId(String mid) {
+		return ss.selectOne("member.getId",mid);
+	}
 }
