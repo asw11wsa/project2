@@ -35,7 +35,8 @@
 	</resultMap>
 	
 	<select id="adetail" resultMap="withafter" parameterType="int">
-		select t.num,t.title,t.region,t.content,t.tourdate,t.imga,t.imgb,t.imgc,a.title as atitle,a.content as acontent,a.booker,a.imgn,a.stars  from tourlist t,aftertour a  where t.num = a.tournum and t.num = #{num}
+		select t.num,t.title,t.region,t.content,t.tourdate,t.imga,t.imgb,t.imgc,a.title as atitle,a.content as acontent,a.booker,a.imgn,a.stars  
+		from tourlist t,aftertour a  where t.num = a.tournum and t.num = #{num}
 	</select>
 	<select id="bdetail" resultType="tldto" parameterType="int">
 		select * from tourlist where num = #{num}
@@ -50,7 +51,8 @@
 		delete form tourlist where num = #{num}
 	</delete>
 	<update id="update" parameterType="tldto">
-		update from tourlist set title = #{title}, region = #{region}, content = #{content},tourdate = #{tourdate}, imga = #{imga}, imgb = #{imgb}, imgc = #{imgc}, updatedate = sysdate where num = #{num}
+		update from tourlist set title = #{title}, region = #{region}, content = #{content},tourdate = #{tourdate}, imga = #{imga}, imgb = #{imgb}, 
+		imgc = #{imgc}, updatedate = sysdate where num = #{num}
 	</update>
 	<select id="total" resultType="int" parameterType="spdto">
 		select count(*) from tourlist

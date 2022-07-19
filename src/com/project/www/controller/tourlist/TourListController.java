@@ -35,11 +35,7 @@ public class TourListController {
 		// 검색을 누르면 1페이지로 이동을 하기 위해서 아래와 같은 if 구문을 사용
 		if(dto.getStartsearch().equals("1")) {
 			dto.setcPage(dto.getStartsearch());
-		}else {
-			dto.setcPage(dto.getcPage());
 		}
-		// PageModulesAdvice 에 dto를 전달해서 페이지 를 처리
-		m.addAttribute("dto", dto);
 		// 검색을 할 경우 dto에 있는 key와 values 를 통해 total 값을 변경
 		int totalRecord = tourlist.getCnt(dto);
 		m.addAttribute("totalRecord", totalRecord);

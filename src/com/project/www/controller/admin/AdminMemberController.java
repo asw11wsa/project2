@@ -1,7 +1,5 @@
 package com.project.www.controller.admin;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.project.www.dao.AdminMemberDaoInter;
 import com.project.www.dto.MemberDTO;
 import com.project.www.dto.SearchPageDTO;
-import com.project.www.dto.TourListDTO;
 
 @Controller
 @RequestMapping(value = "/adminmember")
