@@ -34,4 +34,10 @@ public class ContactDAO implements ContactDAOInter{
 		ss.update("contact.userstatus", id);
 	}
 
+	@Override
+	public void changeAdminStatus(String id) {
+		ss.update("contact.adminstatus", id);
+		
+	}
+
 }

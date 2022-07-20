@@ -9,4 +9,5 @@ public interface ContactDAOInter {
 	public List<ContactDTO> listchat(String id);
 	public int getUserStatusCnt(String id);
 	public void changeUserStatus(String id);
+	public void changeAdminStatus(String id);
 }

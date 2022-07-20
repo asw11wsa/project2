@@ -14,16 +14,22 @@
 	  <div class="toast-body overflow-auto" id="chatbody" style="height:40vh">
 	  	<c:forEach var="list" items="${list }">
 	  		<c:if test="${list.sender != 'admin' }">
-	  			<div class="text-start bg-light rounded p-2 fs-6">
-			  		<div class="fw-blod">
-			  			<img src="${pageContext.request.contextPath }/resources/image/logo.png" width="40px" class="rounded-pill me-2 border inline-block"/><span class="">${list.msg }</span>
+	  			<div class="text-start bg-light rounded p-2 fs-6 border mb-1">
+			  		<div class="fw-blod d-flex">
+			  			<div class="d-inline-block" style="width:40px;">
+			  				<img src="${pageContext.request.contextPath }/resources/image/logo.png" width="40px" class="rounded-pill me-2 border inline-block"/>
+			  			</div>
+			  			<span class="d-inline-block ps-1" style="width:calc(100% - 40px);word-break:keep-all;">${list.msg }</span>
 			  		</div>
 			  	</div>
 	  		</c:if>
 	  		<c:if test="${list.sender == 'admin' }">
-	  			<div class="text-end p-2 fs-6">
-			  		<div class="fw-blod">
-			  			<span class="me-2">${list.msg}</span><img src="${pageContext.request.contextPath }/resources/image/logo.png" width="40px" class="rounded-pill me-2 border"/>
+	  			<div class="text-end p-2 fs-6 mb-1">
+			  		<div class="fw-blod d-flex">
+			  			<span class="me-2 d-inline-block" style="width:calc(100% - 40px);word-break:keep-all;">${list.msg}</span>
+			  			<div class="d-inline-block" style="width:40px;">
+			  				<img src="${pageContext.request.contextPath }/resources/image/logo.png" width="100%" class="rounded-pill me-2 border"/>
+			  			</div>
 			  		</div>
 			  	</div>
 	  		</c:if>

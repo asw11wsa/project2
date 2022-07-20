@@ -11,7 +11,7 @@
 			<input type="hidden" name="startSearch" value="1">
 	        <input class="form-control me-2" name="searchval" type="search" placeholder="Search" aria-label="Search">
         </div>
-        <button class="btn btn-outline-success" type="submit">검색</button>
+        <button class="btn btn-outline-success" type="submit" style="width: 70px">검색</button>
       </form>
     </div>
 	<div class="row">
@@ -80,4 +80,3 @@
 	</c:choose>
   </ul>
 </nav>
-<a href="#" class="btn btn-primary">sksk</a>

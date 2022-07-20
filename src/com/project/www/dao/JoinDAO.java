@@ -20,7 +20,7 @@ public class JoinDAO implements JoinDAOInter {
 			return true;
 		} catch (Exception e) {
 			System.out.println("½ÇÆÐ");
-			
+			e.printStackTrace();
 			return false;
 		}
 	}

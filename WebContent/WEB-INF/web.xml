@@ -40,20 +40,6 @@
 		<servlet-name>project</servlet-name>
 		<url-pattern>/web/*</url-pattern>
 	</servlet-mapping>
-	
-	<!-- 2  DispatcherServlet : mobileWeb-->
-	<servlet>
-		<servlet-name>admin</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/admin-*.xml</param-value>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>admin</servlet-name>
-		<url-pattern>/admin/*</url-pattern>
-	</servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

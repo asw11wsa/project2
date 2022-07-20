@@ -28,6 +28,16 @@ public class ContactController {
 		contactDAOInter.insert(dto);
 	}
 	
+	@GetMapping(value = "/admininsert")
+	public void admininsert(String msg,String id) {
+		ContactDTO dto = new ContactDTO();
+		dto.setSender("admin");
+		dto.setReceiver(id);
+		dto.setMsg(msg);
+		contactDAOInter.changeAdminStatus(id);
+		contactDAOInter.insert(dto);
+	}
+	
 	@GetMapping(value = "/list")
 	public void getlist(Model m,String id) {
 		m.addAttribute("list", contactDAOInter.listchat(id));

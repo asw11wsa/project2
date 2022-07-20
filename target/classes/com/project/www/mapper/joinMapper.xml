@@ -5,7 +5,7 @@
 <mapper namespace="join">
 	<insert id="add" parameterType="memdto">
 		insert into member values(member_seq.nextVal, #{mid}, #{mpwd}, #{mname}, 
-		#{mjubun}, #{memail}, #{mphone}, #{madr}, sysdate)
+		#{mjubun}, #{memail}, #{mphone}, #{madr}, sysdate,0,'unlock')
 	</insert>
 	
 	<select id="idchk" parameterType="String" resultType="int">

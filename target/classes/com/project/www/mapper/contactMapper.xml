@@ -20,4 +20,21 @@
  	<update id="userstatus" parameterType="String">
  		update contact set status = 0 where receiver = #{id}
  	</update>
+ 	<update id="adminstatus" parameterType="String">
+ 		update contact set status = 0 where sender = #{id}
+ 	</update>
+ 	<select id="adminlist" resultType="cdto" parameterType="spdto">
+ 		select * from(select rownum r_num, c.* from (select DISTINCT(sender),sum(decode(status,2,1,0)) as statuscnt from contact where sender != 'admin'
+ 		<if test='"id" == searchkey'>
+ 			and id like	'%' || #{searchval} || '%' 
+ 		</if>
+ 		group by sender ) c order by statuscnt desc) where r_num between #{start} and #{end}
+ 	</select>
+ 	<select id="admincnt" resultType="int" parameterType="spdto">
+ 		select count(*) cnt from (select DISTINCT(sender) from contact where sender != 'admin'
+		<if test='"id" == searchkey'>
+			and id like	'%' || #{searchval} || '%' 
+		</if>
+ 		)
+ 	</select>
  </mapper>
