@@ -1,5 +1,7 @@
 package com.project.www.controller.contact;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,16 +19,24 @@ public class AdminContactController {
 	private AdminContactDAOInter adminContactDAOInter;
 	
 	@GetMapping(value = "/list")
-	public String chatList(Model m , SearchPageDTO dto) {
+	public String chatList(Model m , SearchPageDTO dto,HttpSession session) {
 		int totalRecord = adminContactDAOInter.getCnt(dto);
 		m.addAttribute("totalRecord", totalRecord);
-		return "admin/contact/list";
+		if((int)session.getAttribute("sessionAdmin") != 1) {
+			return "redirect:/web/main";
+		}else {
+			return "admin/contact/list";
+		}
 	}
 	
 	@GetMapping(value = "/detail")
-	public String chatdetail(Model m,String id) {
+	public String chatdetail(Model m,String id,HttpSession session) {
 		m.addAttribute("list", adminContactDAOInter.listchat(id));
 		m.addAttribute("id", id);
-		return "admin/contact/detail";
+		if((int)session.getAttribute("sessionAdmin") != 1) {
+			return "redirect:/web/main";
+		}else {
+			return "admin/contact/detail";
+		}
 	}
 }

@@ -79,6 +79,8 @@ public class LoginModulesAdvice {
 						mdto = memberDAOInter.loginAfter(mdto);
 						if(mdto.getMnum() <= 5) {
 							session.setAttribute("sessionAdmin", 1);
+						}else {
+							session.setAttribute("sessionAdmin", 0);
 						}
 						session.setAttribute("sessionID", mdto.getMid());
 						session.setAttribute("sessionName", mdto.getMname());
