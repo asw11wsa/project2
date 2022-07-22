@@ -14,6 +14,8 @@ public class SearchPageDTO {
 	// 검색 버튼을 눌렀을때 페이지를 1페이지로 이동 시키기 위한 초기화값
 	private String startsearch;
 	
+	private String searchid;
+	
 	// 기존의 인자로 받아 왔던 값을 RequestParam을 이용해서 defaultValue를  지정할수 있지만
 	// dto를 통으로 가져올때는 사용할수 없기 때문에 생성자를 이용해서 초기화
 	public SearchPageDTO() {
@@ -27,6 +29,14 @@ public class SearchPageDTO {
 	
 	public String getStartsearch() {
 		return startsearch;
+	}
+
+	public String getSearchid() {
+		return searchid;
+	}
+
+	public void setSearchid(String searchid) {
+		this.searchid = searchid;
 	}
 
 	public void setStartsearch(String startsearch) {

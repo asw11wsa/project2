@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<div class="my-3 w-25 text-right d-flex flex-row-reverse">
-		<form class="d-flex" role="search" method="get">
+	<div class="my-3 w-25 text-right d-flex justify-content-center">
+		<form class="d-flex justify-content-center" role="search" method="get">
 		<div class="input-group">
-			<select class="form-select" name="searchname">
+			<select class="form-select" name="searchkey">
 				<option value="searchtitle">제목</option>
 				<option value="searchregion">지역</option>
 			</select>
@@ -41,7 +41,7 @@
 	</c:when>
 	<c:otherwise>
 	<li class="page-item">
-	      <a class="page-link" href="${pageContext.request.contextPath}/web/tourlist/list?cPage=${nowPage-pagePerBlock}" aria-label="Previous">
+	      <a class="page-link" href="${pageContext.request.contextPath}/web/booking/list?cPage=${nowPage-pagePerBlock}" aria-label="Previous">
 	        <span aria-hidden="true">&laquo;</span>
 	      </a>
 	    </li>
@@ -54,7 +54,7 @@
 		<li class="page-item active"><a class="page-link" href="#">${i.index}</a></li>
 		</c:when>
 		<c:otherwise>
-		<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/web/tourlist/list?cPage=${i.index}">${i.index}</a></li>
+		<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/web/booking/list?cPage=${i.index}">${i.index}</a></li>
 		</c:otherwise>
 		</c:choose> 
 	</c:forEach>
@@ -68,14 +68,14 @@
 		</c:when>
 		<c:when test="${totalPage > (nowPage+pagePerBlock)}">
 		<li class="page-item">
-	      <a class="page-link" href="${pageContext.request.contextPath}/web/tourlist/list?cPage=${nowPage+pagePerBlock }" aria-label="Next">
+	      <a class="page-link" href="${pageContext.request.contextPath}/web/booking/list?cPage=${nowPage+pagePerBlock }" aria-label="Next">
 	        <span aria-hidden="true">&raquo;</span>
 	      </a>
 	    </li>
 		</c:when>
 		<c:otherwise>
 		<li class="page-item">
-	      <a class="page-link" href="${pageContext.request.contextPath}/web/tourlist/list?cPage=${totalPage }" aria-label="Next">
+	      <a class="page-link" href="${pageContext.request.contextPath}/web/booking/list?cPage=${totalPage }" aria-label="Next">
 	        <span aria-hidden="true">&raquo;</span>
 	      </a>
 	    </li>

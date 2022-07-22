@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,11 +14,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.www.dao.BookingDAOInter;
 import com.project.www.dao.TourListDAOInter;
 import com.project.www.dto.BookingDTO;
+import com.project.www.dto.SearchPageDTO;
 import com.project.www.dto.TourListDTO;
 
 @Controller
@@ -26,9 +29,6 @@ public class BookingController {
 	
 	@Autowired
 	private BookingDAOInter bookingDAOInter;
-	
-	@Autowired
-	private TourListDAOInter tourlist; 
 	
 	@GetMapping(value = "book")
 	public ModelAndView booking(int num,int adult,int children) {
@@ -41,7 +41,7 @@ public class BookingController {
 	}
 
 	@PostMapping("/addbooking")
-   public String addBooking(HttpServletRequest request){
+   public String addBooking(HttpServletRequest request, HttpSession session){
       List<BookingDTO> list = new ArrayList<BookingDTO>();
       String[] personchk = request.getParameterValues("personchk");
       String[] jumin = request.getParameterValues("jumin");
@@ -70,7 +70,7 @@ public class BookingController {
          System.out.println(tournum);
          dto.setPhone(Integer.parseInt(phone[i]));
          System.out.println(phone[i]);
-         dto.setBooker("test1");
+         dto.setBooker(session.getAttribute("sessionID").toString());
          list.add(dto);
       }
       
@@ -80,21 +80,51 @@ public class BookingController {
    }
 	
 	@RequestMapping(value = "/list")
-	public String bookingList(Model m) {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("id", "test1");
-		m.addAttribute("list", bookingDAOInter.getTourList(map));
+	public String bookingList(Model m, SearchPageDTO dto,HttpSession session) {
+		dto.setSearchid(session.getAttribute("sessionID").toString());
+		m.addAttribute("dto", dto);
+		m.addAttribute("totalRecord",bookingDAOInter.getCntTour(dto));
 		return "booking/list";
 	}
 	
 	@RequestMapping(value = "/detaillist")
-	public String bookingDetailList(Model m, int num) {
+	public String bookingDetail(Model m, int num, HttpSession session) {
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("id", "test1");
-		map.put("num", String.valueOf(num));
-		m.addAttribute("list", bookingDAOInter.bookingDetail(map));
+		String id = session.getAttribute("sessionID").toString();
+		
+		TourListDTO vo = bookingDAOInter.tourlistDetail(num);
+		m.addAttribute("vo", vo);
+		
+		BookingDTO dto = new BookingDTO();
+		
+		dto.setBooker(id);
+		dto.setTournum(num);
+		m.addAttribute("bklist", bookingDAOInter.booknumDetail(dto));
 		
 		return "booking/detail";
+	}
+	
+	@PostMapping(value = "/detaillist2")
+	public String bookingDetail2(Model m, int num, int bknum, HttpSession session) {
+		System.out.println(num+" "+bknum);
+		Map<String, String> map = new HashMap<String, String>();
+		String id = session.getAttribute("sessionID").toString();
+		map.put("id", id);
+		map.put("num", String.valueOf(num));
+		map.put("booknum",String.valueOf(bknum));
+		m.addAttribute("list", bookingDAOInter.bookingDetail(map));
+		m.addAttribute("delnum", bknum);
+		return "booking/ajax/detail";
+	}
+	
+	@PostMapping(value = "/deletebooking")
+	public String deleteBooking(HttpServletRequest request, HttpSession session) {
+		BookingDTO dto = new BookingDTO();
+		dto.setBooker(session.getAttribute("sessionID").toString());
+		dto.setBooknum(Integer.parseInt(request.getParameter("delnum")));
+		bookingDAOInter.deleteBooking(dto);
+		System.out.println("ªË¡¶!");
+		return "redirect:/web/booking/list";
 	}
 
 }

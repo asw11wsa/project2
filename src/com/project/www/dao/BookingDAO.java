@@ -12,7 +12,7 @@ import com.project.www.dto.SearchPageDTO;
 import com.project.www.dto.SuperDTO;
 import com.project.www.dto.TourListDTO;
 
-@Repository
+@Repository("bookingList")
 public class BookingDAO implements BookingDAOInter{
 	
 	@Autowired
@@ -35,18 +35,27 @@ public class BookingDAO implements BookingDAOInter{
 	}
 	
 	@Override
-	public List<TourListDTO> getTourList(Map<String, String> map){
-		return ss.selectList("booking.bookinglist",map);
+	public int getCntTour(SearchPageDTO dto) {
+		return ss.selectOne("booking.totaltour",dto);
 	}
-
+	
 	@Override
 	public List<BookingDTO> bookingDetail(Map<String, String> map) {
 		return ss.selectList("booking.bookingdetail", map);
 	}
 	
 	@Override
-	public int getCnt(SearchPageDTO dto) {
-		return ss.selectOne("booking.totalcount",dto);
+	public TourListDTO tourlistDetail(int num) {
+		return ss.selectOne("booking.tourdetail",num);
 	}
-
+	
+	@Override
+	public void deleteBooking(BookingDTO dto) {
+		ss.delete("booking.bookingdelete",dto);
+	}
+	
+	@Override
+	public List<BookingDTO> booknumDetail(BookingDTO dto){
+		return ss.selectList("booking.booknumdetail",dto);
+	}
 }

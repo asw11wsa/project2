@@ -3,6 +3,8 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="booking">
+ 
+ 	<!-- 다중 예약 컨트롤러  -->
     <insert id="add" parameterType="java.util.List">
        <selectKey keyProperty="val" resultType="int" order="BEFORE">
           select booking_booknum_seq.nextVal from dual
@@ -37,40 +39,49 @@
        </foreach>
        ) A
     </insert>
-    <select id="bookinglist" resultType="tldto" parameterType="map">
-		select * from tourlist where num in (select tournum from booking where booker = #{id} group by tournum)
-	</select>
-	 
- <!--	
-	<select id="totalcount" resultType="int" parameterType="spdto">
- 		select count(*) from booking
+	
+	<!-- 예약 리스트  -->
+	<select id="totaltour" resultType="int" parameterType="spdto">
+ 		select count(*) from tourlist
  		<where>
-			<if test="searchtitle != null">
-		        title like	'%' || #{searchtitle} || '%'
+ 			num in (select tournum from booking where booker = #{searchid} group by tournum)
+			<if test='"searchtitle" == searchkey'>
+		        and title like	'%' || #{searchval} || '%'
 		    </if>
-		    <if test="searchregion != null">
-		        region like '%' || #{searchregion} || '%'
+		    <if test='"searchregion" == searchkey'>
+		        and region like '%' || #{searchval} || '%'
 		    </if>
 		</where>
  	</select>
- 	-->
- 	<select id="bookingdetail" resultType="bidto" parameterType="map">
-		select * from booking where booker=#{id} and tournum= #{num}
-	</select>
-
-<!-- 
-	<select id="list" resultType="tldto" parameterType="spdto">
+ 	
+ 	<select id="list" resultType="tldto" parameterType="spdto">
 		select * from (select rownum r_num, t.* from (select * from tourlist
 		<where>
-			<if test="searchtitle != null">
-		        title like	'%' || #{searchtitle} || '%'
+			<if test='"searchtitle" == searchkey'>
+		        title like	'%' || #{searchval} || '%'
 		    </if>
-		    <if test="searchregion != null">
-		        region like '%' || #{searchregion} || '%'
+		    <if test='"searchregion" == searchkey'>
+		        region like '%' || #{searchval} || '%'
 		    </if>
 		</where>
 		 order by 1 desc) t) where r_num between #{start} and #{end}
-		 and num in (select tournum from booking where booker = #{id} group by tournum)
+		 and num in (select tournum from booking where booker = #{searchid} group by tournum)
 	</select>
-	 -->
+	
+	<!-- 디테일 예약 리스트 -->
+ 	<select id="bookingdetail" resultType="bidto" parameterType="map">
+		select * from booking where booker=#{id} and tournum= #{num} and booknum = #{booknum}
+	</select>
+	
+	<select id="tourdetail" resultType="tldto" parameterType="int">
+		select * from tourlist where num=#{num}
+	</select>
+	
+	<delete id="bookingdelete" parameterType="bidto">
+		delete from booking where booker=#{booker} and booknum = #{booknum}
+	</delete>
+	
+	<select id="booknumdetail" resultType="bidto" parameterType="bidto">
+		select DISTINCT(booknum) from booking where booker=#{booker} and tournum= #{tournum}
+	</select>
  </mapper>

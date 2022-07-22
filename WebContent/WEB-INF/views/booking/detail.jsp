@@ -68,7 +68,7 @@
 			</div>
 			<%-- 상품 정보 --%>
 			<div class="tab-pane fade" id="nav-profile" role="tabpanel"
-				aria-labelledby="nav-profile-tab" tabindex="0">
+				aria-labelledby="nav-profile-tab" tabindex="0" >
 				<article>
 					<header>
 						<h1>예약 리스트 데모</h1>
@@ -76,84 +76,9 @@
 					<ul class="list-unstyled">
 						<li class="border-top my-3"></li>
 					</ul>
-					<div>
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th>예약그룹번호</th>
-									<th>예약번호</th>
-									<th>여행번호</th>
-									<th>성인/아동</th>
-									<th>주민등록번호</th>
-									<th>핸드폰번호</th>
-									<th>이메일</th>
-									<th>영어 이름 first</th>
-									<th>영어 이름 last</th>
-									<th>예약자아이디</th>
-									<th>이름</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="e" items="${list }">
-									<tr>
-										<td>${e.booknum }</td>
-										<td>${e.num }</td>
-										<td>${e.tournum }</td>
-										<td>${e.personchk }</td>
-										<td>${e.jumin }</td>
-										<td>${e.phone }</td>
-										<td>${e.email }</td>
-										<td>${e.engfirst }</td>
-										<td>${e.englast }</td>
-										<td>${e.booker }</td>
-										<td>${e.name }</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-							<tfoot>
-								<tr>
-									<th colspan="11" style="text-align: center;">
-										<ul class="pagination" style="margin: 0 auto; width: 70%">
-											<c:choose>
-												<c:when test="${startPage < 6}">
-													<li class="page-item disabled"><a class="page-link"
-														href="#">이전으로</a></li>
-												</c:when>
-												<c:otherwise>
-													<li class="page-item active"><a class="page-link"
-														href="${pageContext.request.contextPath}/upload/uplist?cPage=${startPage-1}">이전으로</a></li>
-												</c:otherwise>
-											</c:choose>
-											<c:forEach varStatus="i" begin="${startPage}"
-												end="${endPage }" step="1">
-												<c:choose>
-													<c:when test="${i.index == nowPage}">
-														<li class="page-item disabled"><a class="page-link"
-															href="#">${i.index}</a></li>
-													</c:when>
-													<c:otherwise>
-														<li class="page-item"><a class="page-link"
-															href="${pageContext.request.contextPath}/upload/uplist?cPage=${i.index}">${i.index}</a></li>
-													</c:otherwise>
-												</c:choose>
-											</c:forEach>
-											<c:choose>
-												<c:when test="${endPage >= totalPage }">
-													<li class="page-item disabled"><a class="page-link"
-														href="#">다음으로</a></li>
-												</c:when>
-												<c:otherwise>
-													<li class="page-item active"><a class="page-link"
-														href="${pageContext.request.contextPath}/upload/uplist?cPage=${endPage+1}">다음으로</a></li>
-												</c:otherwise>
-											</c:choose>
-										</ul>
-									</th>
-								</tr>
-							</tfoot>
-						</table>
+					<div id="bookinglist" class="bookinglist">
+						
 					</div>
-
 				</article>
 			</div>
 			<%-- 법률 정보 --%>
@@ -236,4 +161,36 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-sm-12 col-lg-3">
+		<div class="card text-center mt-5" style="width: 18rem;">
+			<div class="card-body">
+				<div>
+					<label for="bk" class="form-label">예약 확인</label> <select
+						class="form-select" id="bknum" name="bknum" required>
+						<option selected disabled value="">선택해라</option>
+						<c:forEach items="${bklist }" var="e">
+							<option>${e.booknum }</option>
+						</c:forEach>
+					</select>
+					<button type="button" id="listbtn" class="btn btn-secondary">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+<script>
+$(function() {
+	$('#listbtn').click(function(){
+		let bknum = $('#bknum').val();
+		let num = ${vo.num}
+		$.ajax({
+			url:'detaillist2?num='+num+'&bknum='+bknum,
+			type : 'POST',
+			success:function(data){
+				console.log(data);
+				document.querySelector('.bookinglist').innerHTML=data;
+			}
+		})
+  	})
+})
+</script>
