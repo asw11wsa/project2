@@ -3,19 +3,14 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
          table img{width: 80px;}
-         
-         /* paging */
-         
          table tfoot ol.paging {
             list-style:none;
          }
-         
          table tfoot ol.paging li {
             float:left;
             margin-right:8px;
             background-color: #42484a;
          }
-         
          table tfoot ol.paging li a {
             display:block;
             padding:3px 7px;
@@ -23,13 +18,11 @@
             color:#ffffff;
             font-weight:bold;
          }
-         
          table tfoot ol.paging li a:hover {
             background:#00B3DC;
             color:white;
             font-weight:bold;
          }
-         
          .disable {
             padding:3px 7px;
             border:1px solid silver;
@@ -48,13 +41,14 @@
          <header>
             <h1>게시판</h1>
          </header>
-         <%-- 리펙토링 해야함 --%>
          <table class="table table-bordered">
             <thead>
                <tr>
                   <th>게시물 번호</th>
                   <th>제목</th>
                   <th>사용자ID</th>
+                  <th>카테고리</th>
+                  <th>조회수</th>
                   <th>작성날짜</th>
                </tr>
             </thead>
@@ -64,6 +58,8 @@
                      <td class="text-center">${e.bnum }</td>
                      <td class="align-middle text-center"><a href="detail?bnum=${e.bnum}">${e.bsub }</a></td>
                      <td class="text-center">${e.bwriter }</td>
+                     <td class="text-center">${e.category }</td>
+                     <td class="text-center">${e.cview }</td>
                      <td class="align-middle">${e.bdate }</td>
                   </tr>
                </c:forEach>
@@ -104,14 +100,12 @@
                         </c:choose>
                      </ol>
                   </td>
-                  <td>
-	                  <c:if test="${sessionScope.sessionID != null }">
-	                  	<a href="${pageContext.request.contextPath}/web/upload/upform">글작성</a>
-	                  </c:if>
-	                  <c:if test="${sessionScope.sessionID == null }">
-	                  	<a href="${pageContext.request.contextPath}/web/loginform">글작성</a>
-	                  </c:if>
-                  </td>
+                  <c:if test="${sessionScope.sessionID != null }">
+                     <a type="button" class="btn btn-default" href="${pageContext.request.contextPath}/web/board/upform">글작성</a>
+                  </c:if>
+                  <c:if test="${sessionScope.sessionID == null }">
+                     <a type="button" class="btn btn-default" href="${pageContext.request.contextPath}/web/loginChoice">글작성</a>
+                  </c:if>
                </tr>
             </tfoot>
          </table>

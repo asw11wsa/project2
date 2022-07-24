@@ -66,4 +66,12 @@ public class MemberDAO implements MemberDAOInter{
 	public int getId(String mid) {
 		return ss.selectOne("member.getId",mid);
 	}
+	@Override
+	public String findId(String memail) {
+		return ss.selectOne("member.findId",memail);
+	}
+	@Override
+	public String findPwd(String memail) {
+		return ss.selectOne("member.findPwd", memail);
+	}
 }

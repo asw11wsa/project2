@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="qnaboard">
+
+	<select id="totalCount" resultType="int">
+		select count(*) from qnaboard where iwriter=#{iwriter}
+	</select>
+	<insert id="add" parameterType="qnadto">
+		insert into qnaboard
+		values(qnaboard_seq.nextVal,#{iwriter},#{isub},#{icont},sysdate,null,null)
+	</insert>
+	<select id="detail" parameterType="int" resultType="qnadto">
+		select * from qnaboard where inum=#{inum}
+	</select>
+	
+	<select id="list"  resultType="qnadto" parameterType="int">
+    	select q.inum, q.iwriter, q.isub, q.idate, q.istate 
+    	from qnaboard q, member m where q.iwriter = m.mid and m.mnum = #{mnum} order by inum desc 
+    </select>
+    	<update id="update" parameterType="qnadto">
+	update qnaboard set isub=#{isub},  icont=#{icont}  where inum=#{inum}
+	</update>
+	<delete id="delete"  parameterType="int" >
+		delete from qnaboard where inum=#{inum}
+	</delete>
+	 <select id="upqnapage" resultType="qnadto" parameterType="int">
+	select * from qnaboard where inum = #{inum}
+	</select>
+	
+ </mapper>

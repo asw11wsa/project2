@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.www.dao.JoinDAOInter;
+import com.project.www.dto.AdminDTO;
 import com.project.www.dto.MemberDTO;
 
 @Controller
@@ -21,13 +22,22 @@ public class JoinController {
 	@Autowired
 	private JoinDAOInter joindaointer;
 	
+	@RequestMapping(value = "/joinChoice")
+	public String joinChoice() {		
+		return "join/joinChoice";
+	}
 	@GetMapping(value = "/joinform")
 	public ModelAndView joinform(String cPage) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("join/joinform");
 		return mav;
 	}
-	
+	@GetMapping(value = "/joinAdminform")
+	public ModelAndView joinAdminform(String cPage) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("join/joinAdminform");
+		return mav;
+	}
 	@PostMapping(value="/memberadd")
 	public ModelAndView memberAdd(MemberDTO dto, HttpServletRequest request) {
 		String jubun1 = request.getParameter("jubun1");
@@ -66,10 +76,28 @@ public class JoinController {
 //		}
 		return mav;
 	}
-	
+	@PostMapping(value="/adminadd")
+	public ModelAndView adminAdd(AdminDTO dto, HttpServletRequest request) {
+		ModelAndView mav=null;
+		try {
+			joindaointer.addAdmin(dto);
+			mav = new ModelAndView("redirect:/web/main");
+		} catch (Exception e) {
+			e.printStackTrace();
+			mav = new ModelAndView("join/joinerror");
+		}
+		return mav;
+	}
 	@GetMapping(value="/chk/idchk")
 	public ModelAndView idCheck(Model model, @RequestParam("mid") String mid) {
 		int cnt = joindaointer.checkId(mid);
+		model.addAttribute("cnt", cnt);
+		ModelAndView mav = new ModelAndView("join/chk/idchk");
+		return mav;
+	}
+	@GetMapping(value="/chk/idchkAdmin")
+	public ModelAndView idAdminCheck(Model model, @RequestParam("aid") String aid) {
+		int cnt = joindaointer.checkAdminId(aid);
 		model.addAttribute("cnt", cnt);
 		ModelAndView mav = new ModelAndView("join/chk/idchk");
 		return mav;

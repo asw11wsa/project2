@@ -114,7 +114,7 @@ public class BookingController {
 		map.put("booknum",String.valueOf(bknum));
 		m.addAttribute("list", bookingDAOInter.bookingDetail(map));
 		m.addAttribute("delnum", bknum);
-		return "booking/ajax/detail";
+		return "booking/ajax/detail/detail";
 	}
 	
 	@PostMapping(value = "/deletebooking")

@@ -18,4 +18,6 @@ public interface MemberDAOInter {
 	public int getWrong(String mid);
 	public String getLock(String mid);
 	public int getId(String mid);
+	public String findId(String memail);
+	public String findPwd(String memail);
 }

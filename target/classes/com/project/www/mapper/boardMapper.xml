@@ -30,5 +30,7 @@
  	where bnum=#{bnum}
  </update>
  
- 
+ <update id="view" parameterType="int">
+ 	update board set cview = cview+1 where bnum = #{bnum}
+ </update>
  </mapper>

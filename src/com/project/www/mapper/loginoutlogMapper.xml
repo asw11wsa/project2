@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="log">
+	<insert id="addlog" parameterType="logdto">
+		insert into loginoutlog values(loginoutlog_seq.nextVal, #{lid}, #{lip}, #{lstatus},sysdate)
+	</insert>
+	
+	<select id="lastlog" parameterType="String" resultType="int">
+		select nvl(trunc(sysdate-max(ltime)),0) from loginoutlog where lid=#{lid} and lstatus='logout'
+	</select>
+	
+</mapper>

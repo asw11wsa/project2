@@ -28,13 +28,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="${mycontext}/web/">Home</a>
+          <a class="nav-link active" aria-current="page" href="${mycontext}/web/">홈</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="${mycontext}/web/tourlist/list">list</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="${mycontext}/web/tourlist/form">form</a>
+          <a class="nav-link" href="${mycontext}/web/tourlist/list">페키지 상품 목록</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="${mycontext}/web/board/list">게시판</a>
@@ -43,10 +40,10 @@
       <ul class="navbar-nav mb-2 mb-lg-0 d-flex" role="search">
       	<c:if test="${sessionScope.sessionID == null }">
 	      	<li class="nav-item">
-	          <a class="nav-link" href="${mycontext}/web/loginform">로그인</a>
+	          <a class="nav-link" href="${mycontext}/web/loginChoice">로그인</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="${mycontext}/web/join/joinform">회원가입</a>
+	          <a class="nav-link" href="${mycontext}/web/join/joinChoice">회원가입</a>
 	        </li>
         </c:if>
         <c:if test="${sessionScope.sessionID != null }">
@@ -72,11 +69,11 @@
 		            ${sessionScope.sessionID }
 		          </a>
 		          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-		            <li><a class="dropdown-item" href="${mycontext}/web/member/mypageForm?mnum=${sessionScope.sessionMnum}">마이페이지</a></li>
-		            <li><a class="dropdown-item" href="${mycontext}/web//adminmember/adminMember">관리자 페이지</a></li>
+		            <li><a class="dropdown-item" href="${mycontext}/web/adminmember/adminMember">관리자 페이지</a></li>
+		            <li><a class="dropdown-item" href="${mycontext}/web/tourlist/form">페키지 등록</a></li>
 		            <li><a class="dropdown-item" href="${mycontext}/web/logout">로그아웃</a></li>
 		            <li><hr class="dropdown-divider"></li>
-		            <li><a class="dropdown-item" href="#">나의 예약목록</a></li>
+		            <li><a class="dropdown-item" href="${mycontext}/web/booking/list">나의 예약목록</a></li>
 		          </ul>
 		        </li>
         	</c:if>

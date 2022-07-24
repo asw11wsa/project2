@@ -25,8 +25,9 @@
 			<div class="form-group" style="text-align: right; margin-top: 10px;">
 				<button type="submit" class="btn btn-primary">Login</button>
 				&nbsp;
-				<button type="button" class="btn btn-primary">Find ID</button>
-				<button type="button" class="btn btn-primary">Find Password</button>
+				<a href="${pageContext.request.contextPath }/web/loginfId">
+				<button type="button" class="btn btn-primary">Find ID/Password</button>
+				</a>
 			</div>
 		</form>
 	</div>

@@ -11,5 +11,5 @@ public interface BoardDaoInter extends PageListInter{
 	public BoardDTO getDetail(int num);
 	public void updateBoard(BoardDTO vo);
 	public void deleteBoard(int num);
-	
+	public void cntBoardView(int bnum);
 }

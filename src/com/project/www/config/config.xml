@@ -11,5 +11,8 @@
  		<typeAlias type="com.project.www.dto.MemberDTO" alias="memdto"/>
  		<typeAlias type="com.project.www.dto.BoardDTO" alias="bdto"/>
  		<typeAlias type="com.project.www.dto.ContactDTO" alias="cdto"/>
+ 		<typeAlias type="com.project.www.dto.AdminDTO" alias="admdto"/>
+ 		<typeAlias type="com.project.www.dto.LoginoutLogDTO" alias="logdto"/>
+ 		<typeAlias type="com.project.www.dto.QnaboardDTO" alias="qnadto"/>
  	</typeAliases>
  </configuration>

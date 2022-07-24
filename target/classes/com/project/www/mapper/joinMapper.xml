@@ -12,5 +12,11 @@
 		select count(*) from member where mid=#{mid}
 	</select>
 	
+	<insert id="addAdmin" parameterType="admdto">
+		insert into admin values(admin_seq.nextVal, #{aid}, #{apwd}, #{agrade})
+	</insert>
 	
+	<select id="idchkAdmin" parameterType="String" resultType="int">
+		select count(*) from admin where aid=#{aid}
+	</select>
 </mapper>

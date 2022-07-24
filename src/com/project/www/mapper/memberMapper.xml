@@ -41,4 +41,10 @@
 	<select id="getId" parameterType="String" resultType="int">
 		select count(*) from member where mid =#{mid}
 	</select>
+	<select id="findId" parameterType="String" resultType="String">
+		select mid from member where memail=#{memail}
+	</select>
+	<select id="findPwd" parameterType="String" resultType="String">
+		select mpwd from member where memail=#{memail}
+	</select>
 </mapper>

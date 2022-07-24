@@ -49,6 +49,11 @@ public class BoardDao implements BoardDaoInter{
 		return ss.selectList("board.listpage", dto);
 	}
 	
+	@Override
+	public void cntBoardView(int bnum) {
+		ss.update("board.view",bnum);
+		
+	}
 	
 
 }

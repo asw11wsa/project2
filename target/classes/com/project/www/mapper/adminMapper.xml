@@ -4,6 +4,13 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="admin">
  
+ 	<select id="idcheck" parameterType="admdto" resultType="int">
+		select count(*) from admin where aid = #{aid} and apwd = #{apwd}
+	</select>
+	<select id="loginkeep" parameterType="admdto" resultType="admdto">
+		select * from admin where aid = #{aid} and apwd = #{apwd}
+	</select>
+ 
  	<select id="memlist" resultType="memdto" parameterType="spdto">
  		select * from (select rownum r_num, a.* from(select * from member 
  		<where>

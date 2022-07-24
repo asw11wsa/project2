@@ -18,7 +18,15 @@
 					<div class="col-sm-10">
 						<input type="text" name="bsub" id="bsub" placeholder="제목을 입력하세요." />
 					</div>
-
+				<div class="row mb-3">
+					<label class="col-sm-2 col-form-label">국내/해외</label>
+					<div>
+						<select name="category" id="category">
+							<option value="국내" selected>국내</option>
+							<option value="해외">해외</option>
+						</select>
+					</div>
+				</div>	
 				</div>
 				<div class="row mb-3">
 					<label class="col-sm-2 col-form-label">작성자</label>
@@ -45,16 +53,10 @@
 				<div class="row mb-3 ">
 					<div class="col-sm-10">
 						<input type="submit" value="등록" id="btn1" class="btn btn-info" />
-						<!--  input type="button" value="등록" id="btn1" class="btn btn-danger"
-							onclick="location='ex1_list.jsp?cPage=1'" /-->
 					</div>
 				</div>
 			</form>
 		</fieldset>
-
-
-
 	</div>
- 
     </article>
     

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="adminqna">
+ 
+ 	<select id="qnalist" resultType="qnadto" parameterType="spdto">
+ 		select * from (select rownum r_num, a.* from(select * from qnaboard 
+ 		<where>
+ 			<if test='"id" == searchkey'>IWRITER like '%'||#{searchval}||'%'</if>
+ 		</where>
+ 		 order by inum desc) a )
+ 		 where r_num BETWEEN #{start} and #{end}
+ 	</select>
+ 
+ 	<select id="totalCount" resultType="int" parameterType="spdto">
+ 		select count(*) from qnaboard 
+		<where>
+ 			<if test='"id" == searchkey'>IWRITER like '%'||#{searchval}||'%'</if>
+ 		</where>
+ 	</select>
+ 	
+ 	<select id="detail" resultType="qnadto" parameterType="int">
+ 		select * from qnaboard where inum = #{inum}
+ 	</select>
+ 
+ 	<update id="update" parameterType="qnadto">
+ 		update qnaboard set iadmincom = #{iadmincom}, istate = #{istate} where inum = #{inum}
+ 	</update>
+ </mapper>
