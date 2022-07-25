@@ -21,7 +21,7 @@
 		  <div class="card-body">
 		    <h5 class="card-title">${list.title }</h5>
 		    <p class="card-text">${list.content}</p>
-		    <a href="${pageContext.request.contextPath }/web/tourlist/detail?num=${list.num}" class="btn btn-primary">Go somewhere</a>
+		    <a href="${pageContext.request.contextPath }/web/tourlist/detail?num=${list.num}" class="btn btn-primary">상세보기</a>
 		  </div>
 		</div>
 	</c:forEach>

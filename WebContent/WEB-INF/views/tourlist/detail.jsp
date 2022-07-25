@@ -58,7 +58,8 @@
 			<div class="tab-pane fade" id="nav-profile" role="tabpanel"
 				aria-labelledby="nav-profile-tab" tabindex="0">
 				<c:forEach var="list" items="${list }">
-					<p>${list.title}</p>
+					<p>작성자 : ${list.booker}, 제목 :${list.title}, 내용:${list.content }</p>
+					<hr>
 				</c:forEach>
 				
 				</div>

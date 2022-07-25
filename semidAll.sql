@@ -142,8 +142,6 @@ sender varchar2(30),
 receiver varchar2(30),
 msg varchar2(300),
 status number(2),
-createdate date,
-CONSTRAINT contact_sender_fk FOREIGN key (sender) REFERENCES member(mid) on delete CASCADE,
-CONSTRAINT contact_receiver_fk FOREIGN key (receiver) REFERENCES member(mid) on delete CASCADE
+createdate date
 );
 create sequence contact_seq INCREMENT BY 1 START WITH 1;
