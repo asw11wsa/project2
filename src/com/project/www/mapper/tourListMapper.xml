@@ -35,7 +35,8 @@
 	</resultMap>
 	
 	<select id="adetail" resultMap="withafter" parameterType="int">
-		select t.num,t.title,t.region,t.content,t.tourdate,t.imga,t.imgb,t.imgc,a.title as atitle,a.content as acontent,a.booker,a.imgn,a.stars  
+		select t.num,t.title,t.region,t.content,t.tourdate,t.imga,t.imgb,t.imgc,a.title as atitle,
+		a.content as acontent,a.booker,a.imgn,a.stars  
 		from tourlist t,aftertour a  where t.num = a.tournum and t.num = #{num}
 	</select>
 	<select id="bdetail" resultType="tldto" parameterType="int">

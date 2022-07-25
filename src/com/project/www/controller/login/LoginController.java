@@ -46,7 +46,7 @@ public class LoginController {
 		String mid = memberDAOInter.findId(memail);
 		System.out.println("find ID : " +mid);
 		mav.addObject("mid", mid);
-		mav.setViewName("login/chk/idchk");
+		mav.setViewName("login/chk/check/idchk");
 		return mav;
 	}
 	@RequestMapping(value = "chk/pwdchk")
@@ -55,7 +55,7 @@ public class LoginController {
 		String mpwd = memberDAOInter.findPwd(memail);
 		System.out.println("find PWD : " +mpwd);
 		mav.addObject("mpwd", mpwd);
-		mav.setViewName("login/chk/pwdchk");
+		mav.setViewName("login/chk/check/pwdchk");
 		return mav;
 	}
 	@PostMapping(value = "/loginProcess")

@@ -71,6 +71,7 @@
 		          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 		            <li><a class="dropdown-item" href="${mycontext}/web/adminmember/adminMember">관리자 페이지</a></li>
 		            <li><a class="dropdown-item" href="${mycontext}/web/tourlist/form">페키지 등록</a></li>
+		            <li><a class="dropdown-item" href="${mycontext}/web/admin/contact/list">관리자 채팅</a></li>
 		            <li><a class="dropdown-item" href="${mycontext}/web/adminqna/adminQnaList">Qna 게시판 페이지</a></li>
                     <li><a class="dropdown-item" href="${mycontext}/web/adminstatistics/statistics">통계 페이지</a></li>
 		            <li><a class="dropdown-item" href="${mycontext}/web/logout">로그아웃</a></li>
