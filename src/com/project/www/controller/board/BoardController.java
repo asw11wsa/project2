@@ -73,13 +73,14 @@ public class BoardController {
 		}
 		
 		@GetMapping(value = "/detail")
-		public ModelAndView getDetail(Model m,int bnum) {
-			ModelAndView mav = new ModelAndView();
-			mav.addObject("vo", boardList.getDetail(bnum));
-			m.addAttribute("bnum", bnum);
-			mav.setViewName("updemo/detail");
-			return mav;
-		}
+        public ModelAndView getDetail(Model m,int bnum, BoardDTO dto) {
+            ModelAndView mav = new ModelAndView();
+            dto = boardList.getDetail(bnum);
+            mav.addObject("vo", dto);
+            m.addAttribute("bnum",bnum);
+            mav.setViewName("updemo/detail");
+            return mav;
+        }
 		
 		@GetMapping(value = "/updateForm")
 		public ModelAndView updateForm(int bnum) {
