@@ -145,3 +145,5 @@ status number(2),
 createdate date
 );
 create sequence contact_seq INCREMENT BY 1 START WITH 1;
+
+select * from member;

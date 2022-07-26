@@ -40,12 +40,13 @@ public class QnaboardController {
 	}
 	// jsp
 	@PostMapping(value = "/qboard")
-	public String addQnaboard(QnaboardDTO qvo) {
+	public String addQnaboard(QnaboardDTO qvo,HttpSession session) {
+		int mnum = (int) session.getAttribute("sessionMnum");
 		qnaList.addQnaboard(qvo);
 		MemberDTO dto = new MemberDTO();
 		System.out.println("getMnum : "+dto.getMnum());
 		System.out.println("getIwriter-jsp" + qvo.getIwriter());
-		return "qnaboard/qnaboardForm";
+		return "redirect:/web/qna/qnaList?mnum="+mnum;
 	}
 	//select detail 상세보기
 	@GetMapping(value = "/qnaDetail")
