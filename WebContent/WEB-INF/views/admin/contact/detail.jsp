@@ -5,7 +5,7 @@
 	  <div class="admin-toast-header">
 	    <h3 class="me-auto mb-3">문의 채팅</h3>
 	  </div>
-	  <div class="admin-toast-body overflow-auto" id="adminchatbody" style="height:60vh">
+	  <div class="admin-toast-body overflow-auto" id="adminchatbody" style="height:40vh">
 	  	<c:forEach var="list" items="${list }">
 	  		<c:if test="${list.sender != 'admin' }">
 	  			<div class="text-start bg-light rounded p-2 fs-6 border mb-1">

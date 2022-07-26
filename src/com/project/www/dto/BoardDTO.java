@@ -3,8 +3,22 @@ package com.project.www.dto;
 import org.springframework.web.multipart.MultipartFile;
 
 public class BoardDTO extends SuperDTO{
-	private int bnum;
-	private String bsub,bwriter,bcont,bdate,bimg;
+	private int bnum,cview;
+	private String bsub,bwriter,bcont,bdate,bimg,category;	
+	
+	
+	public int getCview() {
+		return cview;
+	}
+	public void setCview(int cview) {
+		this.cview = cview;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	private MultipartFile bfile;
 	
 	public MultipartFile getBfile() {

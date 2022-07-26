@@ -63,7 +63,7 @@ $(function(){
 	$(".toast-body").animate({ scrollTop: $(".toast-body").height() }, 1000);
 	$("#sendchat").click(function(){
 		var msg = $("#chatmsg").val();
-		var html =`<div class="text-start bg-light rounded p-2 fs-6"><div class="fw-blod">`;
+		var html =`<div class="text-start bg-light rounded p-2 border fs-6 mb-1"><div class="fw-blod">`;
 			html += `<img src="${pageContext.request.contextPath }/resources/image/logo.png" width="40px" class="rounded-pill me-2 border"/>`;
 			html += `<span class="">\${msg}</span>`;
 		html +=`</div></div>`;

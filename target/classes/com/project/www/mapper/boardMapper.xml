@@ -4,7 +4,7 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="board">
  <insert id="add" parameterType="bdto">
- 	insert into board values(board_seq.nextVal,#{bsub},#{bwriter},#{bcont},sysdate,#{bimg})
+ 	insert into board values(board_seq.nextVal,#{bsub},#{bwriter},#{bcont},sysdate,#{bimg},#{category},0)
  </insert>
  <!-- Page List Query -->
  <select id="totalCount" resultType="int">
@@ -26,11 +26,12 @@
  </delete>
  
  <update id="update" parameterType="bdto">
- 	update board set bsub=#{bsub},bwriter=#{bwriter},bcont=#{bcont},bimg=#{bimg} 
+ 	update board set bsub=#{bsub},bwriter=#{bwriter},bcont=#{bcont},bimg=#{bimg},category=#{category} 
  	where bnum=#{bnum}
- </update>
+ </update> 
  
  <update id="view" parameterType="int">
  	update board set cview = cview+1 where bnum = #{bnum}
- </update>
+ </update> 
+ 
  </mapper>
